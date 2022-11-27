@@ -1,0 +1,22 @@
+- hosts: localhost
+  become: True
+  vars:
+      num_users: 10
+      default_pass: 'r3dh4t1!'
+      
+  tasks:
+  - name: Create Users
+    user: 
+      name: "user{{ item }}"
+      password: "{{ default_pass | password_hash('sha512') }}"
+      groups: wheel
+    with_sequence: start=0 end={{ num_users }} stride=1
+# Install ocp
+#
+
+# Install virtctl
+#
+#
+
+# Create Users
+

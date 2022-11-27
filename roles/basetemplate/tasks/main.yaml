@@ -19,8 +19,17 @@
   shell: "oc get vms -n {{ project }} | grep Stopped |  awk '{print $1}'"
   register: vm_list
 
-- debug:
-         msg: "{{ vms.name }}"
+- debug: var=vm_list.stdout_lines
+
+  # add wait for provisioned here
+  #
+  #
+  #
+- name: start virtual machiens
+  shell: "virtctl --namespace={{ project }} start {{ item }}"
+  loop: "{{ vm_list.stdout_lines }}"
+  #;  when: "'{{ item }}' in  vms "
+
 
   #  name
   #template_name
