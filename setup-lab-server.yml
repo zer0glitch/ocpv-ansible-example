@@ -11,12 +11,37 @@
       password: "{{ default_pass | password_hash('sha512') }}"
       groups: wheel
     with_sequence: start=0 end={{ num_users }} stride=1
-# Install ocp
-#
 
 # Install virtctl
-#
-#
 
-# Create Users
+  - name: get virtctl
+    get_url: 
+      url: https://github.com/kubevirt/kubevirt/releases/download/v0.41.0/virtctl-v0.41.0-linux-amd64
+      dest: /usr/local/bin/virtctl
+      mode: 0755
 
+  - name: create kube config directory
+    file:
+      mode: 0700
+      path: "/home/user{{ item }}/.kube"
+      state: directory
+      owner: "user{{ item }}"
+      group: "user{{ item }}"
+    with_sequence: start=0 end={{ num_users }} stride=1
+
+  - name: copy kubeconfig to tmp
+    shell: sudo cp /home/lab-user/install/auth/kubeconfig /tmp/kubeconfig
+    
+  - name: copy kube config
+    become: True
+    copy:
+      src: "/tmp/kubeconfig"
+      dest: "/home/user{{ item }}/.kube/config"
+      owner: "user{{ item }}"
+      group: "user{{ item }}"
+    with_sequence: start=0 end={{ num_users }} stride=1
+
+  - name: remove kubconfig
+    file:
+      path: /tmp/kubeconfig
+      state: absent
