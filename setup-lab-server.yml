@@ -30,7 +30,7 @@
     with_sequence: start=0 end={{ num_users }} stride=1
 
   - name: copy kubeconfig to tmp
-    shell: sudo cp /home/lab-user/install/auth/kubeconfig /tmp/kubeconfig
+    shell: sudo cp /home/lab-user/install/auth/kubeconfig /tmp/kubeconfig && chmod 755 /tmp/kubeconfig
     
   - name: copy kube config
     become: True
@@ -45,3 +45,16 @@
     file:
       path: /tmp/kubeconfig
       state: absent
+
+  - name: Pause a Deployment.
+    become: False
+    kubernetes.core.k8s:
+    #  kubeconfig: ~/.kube/config
+      definition:
+        kind: Project
+        apiVersion: project.openshift.io/v1
+        metadata:
+          name: "user{{ item }}"
+          labels:
+            kubernetes.io/metadata.name: "user{{ item }}"
+    with_sequence: start=0 end={{ num_users }} stride=1
