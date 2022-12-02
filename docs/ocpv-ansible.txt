@@ -1,0 +1,24 @@
+**OCP-V wiwth Ansible
+
+1.  Join space OCP-V-lab-RHTE2023
+
+** If you have created your own openshift instance, see below for how to install OCP-v
+
+2.  Login to the existing OCP-v instance
+    u: 
+    p:
+
+3.  Click Projects-->Create new project
+
+4.  
+
+**Installing OCP-v
+1.  Login into https://demo.openshift.com
+2.  Select Openshift virtualization hands on
+3.  Order an instance
+4.  Log into openshift per instructions
+5.  Select operators
+6.  Click install openshift virtualizatoin
+7.  Click create hyper converged
+8.  Goto step 1.3
+
