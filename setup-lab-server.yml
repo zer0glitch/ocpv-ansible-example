@@ -1,7 +1,7 @@
 - hosts: localhost
   become: True
   vars:
-      num_users: 10
+      num_users: 1
       default_pass: 'r3dh4t1!'
       
   tasks:
@@ -30,8 +30,25 @@
     with_sequence: start=0 end={{ num_users }} stride=1
 
   - name: copy kubeconfig to tmp
-    shell: sudo cp /home/lab-user/install/auth/kubeconfig /tmp/kubeconfig && chmod 755 /tmp/kubeconfig
+    shell: sudo cp /home/lab-user/install/auth/kubeconfig /tmp/kubeconfig && sudo chmod 755 /tmp/kubeconfig
     
+  - name: set default user
+    set_fact:
+            my_user: "{{ ansible_facts['env']['SUDO_USER']  }}"
+
+  - name: create kube dir
+    file:
+      path: "/home/{{ my_user }}/.kube"
+      state: directory
+      mode: 0700
+      owner: "{{ my_user }}"
+
+  - name: copy kube config
+    become: True
+    copy:
+      src: "/tmp/kubeconfig"
+      dest: "/home/{{ my_user }}/.kube/config"
+
   - name: copy kube config
     become: True
     copy:
