@@ -16,7 +16,7 @@ Assumptions:
 .  Run playbook with default templates
    - Look at basetemplate
      * Edit the the project to match your user.  For the lab environment it is user{number}
-       **This will create the VMs in this namespace**
+       *This will create the VMs in this namespace*
      * You will see that This calls the vm role takes 3 parameters
        # The server_name:, this is the name of the virtual machine
        # template_name: This is the name of the base template we are going to use. (We will examine the templates before running the playbook)
@@ -29,7 +29,7 @@ Assumptions:
   - import_role:
             name: basetemplate
     vars:
-      **project: jwhetsel**
+      *project: jwhetsel*
       vms:
               - name: server-small
                 template_name: fedora-server-small
