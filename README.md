@@ -18,9 +18,9 @@ Assumptions:
      - Edit the the project to match your user.  For the lab environment it is user{number}
        *This will create the VMs in this namespace*
      - You will see that This calls the vm role takes 3 parameters
-       - The server_name:, this is the name of the virtual machine
-       - template_name: This is the name of the base template we are going to use. (We will examine the templates before running the playbook)
-       - default_password:  This is the password for the cloud-init user.  Later we will show how to add ssh keys using a custom cloud-init)
+       - The _server_name_: this is the name of the virtual machine
+       - _template_name_: This is the name of the base template we are going to use. (We will examine the templates before running the playbook)
+       - _default_password_:  This is the password for the cloud-init user.  Later we will show how to add ssh keys using a custom cloud-init)
 
 ```
 ---
