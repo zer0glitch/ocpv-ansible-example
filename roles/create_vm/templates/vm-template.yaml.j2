@@ -1,0 +1,72 @@
+{% set random_string=lookup('randome_string', length=20, upper=false) %}
+
+apiVersion: v1
+items:
+- apiVersion: kubevirt.io/v1
+  kind: VirtualMachine
+    name: "{{ vm_name }}"
+  spec:
+    dataVolumeTemplates:
+    - apiVersion: cdi.kubevirt.io/v1beta1
+      kind: DataVolume
+      metadata:
+        name: "{{ vm_name }}-{{ random_string }}"
+      spec:
+        sourceRef:
+          kind: DataSource
+          name: "{{ boot_source }}"
+          namespace: openshift-virtualization-os-images
+        storage:
+          resources:
+            requests:
+              storage: "{{ root_volume_size|default('30') }}Gi"
+    running: false
+    template:
+      metadata:
+        annotations:
+          vm.kubevirt.io/workload: server
+        labels:
+          kubevirt.io/domain: "{{ vm_name }}-{{ random_string }}"
+          kubevirt.io/size: custom
+      spec:
+        domain:
+          cpu:
+            cores: "{{ cores|default('1') }}"
+            sockets: "{{ sockets|default('1') }}"
+            threads: "{{ threads|default('1') }}"
+          devices:
+            disks:
+            - disk:
+                bus: virtio
+              name: "{{ vm_name }}-{{ random_string }}"
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+            interfaces:
+            - masquerade: {}
+              name: default
+            networkInterfaceMultiqueue: true
+            rng: {}
+          machine:
+            type: pc-q35-rhel8.4.0
+          resources:
+            requests:
+              memory: "{{ memory|default('2') }}Gi"
+        evictionStrategy: LiveMigrate
+        networks:
+        - name: default
+          pod: {}
+        terminationGracePeriodSeconds: 180
+        volumes:
+        - dataVolume:
+            name: "{{ vm_name }}-{{ random_string }}"
+          name: "{{ vm_name }}-{{ random_string }}"
+        - cloudInitNoCloud:
+            userData: |-
+              #cloud-config
+              user: "{{ user|default('redhatuser') }}"
+              password: "{{ password|default('r3dh4t1!') }}"
+              chpasswd: { expire: False }
+          name: cloudinitdisk
+kind: List
+metadata: {}
