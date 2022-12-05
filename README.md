@@ -1,8 +1,8 @@
 # ocpv-ansible-example
 
 Assumptions:
-  using the rpds
-  . odf off lso
+  using RHPDS
+  . Using Openshift Data Foundation on top of Local Storage Operator
 
 . What is OCP-v
   
