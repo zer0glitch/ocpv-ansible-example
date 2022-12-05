@@ -14,6 +14,9 @@
   * Install Operator 
   * Create hyperconverged
 
+. Install with Ansible
+  * Install Operator and hyperconverged
+
 . Create a VM with UI
 
 .  Run playbook with default templates
