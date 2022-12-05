@@ -59,6 +59,19 @@ Assumptions:
 
 .  Grab a template, and show pieces of it
 
+
+name: "{{ vm_name }}" 
+name: "{{ boot_source }}"
+storage: "{{ root_volume_size|default('30') }}Gi"
+cores: "{{ cores|default('1') }}"
+sockets: "{{ sockets|default('1') }}"
+threads: "{{ threads|default('1') }}"
+memory: "{{ memory|default('2') }}Gi"
+user: "{{ user|default('redhatuser') }}"
+password: "{{ password|default('r3dh4t1!') }}"
+
+
+
 .  How to customize
    Memory
    Drive
