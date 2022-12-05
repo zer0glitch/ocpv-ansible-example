@@ -6,8 +6,11 @@
 
 ## Context:
 
-. What is OpenShift Virtualization
-  
+### What is OpenShift Virtualization
+ - Explain things like what CNV (Container Native Virtualization) is.
+ - how does it compare to more traditional virt platforms, including common pain points. (Probably best to pull this from sales docs. can provide more info if necessary)
+ - Some benefits to OCP-V? (This can be removed if we want)
+ 
 ## Install:
 
 . Walk through GUI with install OCP-v
