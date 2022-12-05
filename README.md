@@ -12,14 +12,17 @@
 ## Install:
 
 ### CNV Installation via OpenShift Console (Graphical Install)
-  * Install Operator 
-  * Create hyperconverged
+
+  * Install Operator
+  * Create Hyper-converged
 
 ### CNV Installation via Ansible (Hacker Install)
-  * Install Operator and hyperconverged
 
-. Create a VM with UI
+  * Install Operator and Hyper-converged
 
+### VM Installation and Configuration via OpenShift Console (Graphical Install)
+
+#### Templating
 .  Run playbook with default templates
    - Look at basetemplate
      - Edit the the project to match your user.  For the lab environment it is user{number}
