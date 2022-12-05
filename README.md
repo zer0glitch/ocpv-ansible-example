@@ -1,11 +1,14 @@
 # ocpv-ansible-example
 
-Assumptions:
-  using RHPDS
-  . Using Openshift Data Foundation on top of Local Storage Operator
+## Assumptions and Pre-Requisites:
+- Using RHPDS
+- Using Openshift Data Foundation on top of Local Storage Operator
 
-. What is OCP-v
+## Context:
+
+. What is OpenShift Virtualization
   
+## Install:
 
 . Walk through GUI with install OCP-v
   * Install Operator 
