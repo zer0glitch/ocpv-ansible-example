@@ -4,21 +4,25 @@
 - Using RHPDS
 - Using Openshift Data Foundation on top of Local Storage Operator
 
-## Context:
-
-. What is OpenShift Virtualization
-  
+## What is OpenShift Virtualization?
+ - Explain things like what CNV (Container Native Virtualization) is.
+ - how does it compare to more traditional virt platforms, including common pain points. (Probably best to pull this from sales docs. can provide more info if necessary)
+ - Some benefits to OCP-V? (This can be removed if we want)
+ 
 ## Install:
 
-. Walk through GUI with install OCP-v
-  * Install Operator 
-  * Create hyperconverged
+### CNV Installation via OpenShift Console (Graphical Install)
 
-. Install with Ansible
-  * Install Operator and hyperconverged
+  * Install Operator
+  * Create Hyper-converged
 
-. Create a VM with UI
+### CNV Installation via Ansible (Hacker Install)
 
+  * Install Operator and Hyper-converged
+
+### VM Installation and Configuration via OpenShift Console (Graphical Install)
+
+#### Templating
 .  Run playbook with default templates
    - Look at basetemplate
      - Edit the the project to match your user.  For the lab environment it is user{number}
