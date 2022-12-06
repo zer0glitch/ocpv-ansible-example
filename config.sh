@@ -5,8 +5,7 @@ sudo pip3 install kubernetes
 sudo pip3 install PyYAML
 sudo pip3 install jsonpatch
 sudo pip3 install openshift
-yum install vim -y
+sudo dnf install vim -y
+sudo ansible-galaxy collection install kubernetes.core
 
-
-
-ansible-playbook  -vv setup-lab-server.yml  -b
+ansible-playbook  -vv setup-lab-server.yaml  -b

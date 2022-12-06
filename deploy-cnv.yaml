@@ -1,0 +1,8 @@
+---
+- name: Install openshift virtualization
+  hosts: localhost
+  tasks:
+
+  - name: import deploy_cnv
+    import_role:
+            name: deploy_cnv

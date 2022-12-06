@@ -29,25 +29,33 @@
       group: "user{{ item }}"
     with_sequence: start=0 end={{ num_users }} stride=1
 
+  - name: set kubeconfig
+    set_fact:
+            kube_config: "{{ lookup('first_found', findme) }}"
+    vars:
+            findme: 
+              - /root/ocp-install/auth/kubeconfig
+              - /home/lab-user/install/auth/kubeconfig
+
   - name: copy kubeconfig to tmp
-    shell: sudo cp /home/lab-user/install/auth/kubeconfig /tmp/kubeconfig && sudo chmod 755 /tmp/kubeconfig
-    
+    shell: "sudo cp  {{ kube_config }} /tmp/kubeconfig && sudo chmod 755 /tmp/kubeconfig"
+
   - name: set default user
     set_fact:
-            my_user: "{{ ansible_facts['env']['SUDO_USER']  }}"
+       _my_user: "{{ ansible_facts['env']['SUDO_USER']|default('root') }}"
 
   - name: create kube dir
     file:
-      path: "/home/{{ my_user }}/.kube"
+      path: "/home/{{ _my_user }}/.kube"
       state: directory
       mode: 0700
-      owner: "{{ my_user }}"
+      owner: "{{ _my_user }}"
 
   - name: copy kube config
     become: True
     copy:
       src: "/tmp/kubeconfig"
-      dest: "/home/{{ my_user }}/.kube/config"
+      dest: "/home/{{ _my_user }}/.kube/config"
 
   - name: copy kube config
     become: True
@@ -63,10 +71,10 @@
       path: /tmp/kubeconfig
       state: absent
 
-  - name: Pause a Deployment.
+  - name: Create user projects
     become: False
     kubernetes.core.k8s:
-    #  kubeconfig: ~/.kube/config
+      kubeconfig: ~/.kube/config
       definition:
         kind: Project
         apiVersion: project.openshift.io/v1

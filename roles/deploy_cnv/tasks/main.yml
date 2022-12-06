@@ -1,15 +1,40 @@
 - name: Apply the Openshift Operator Subscriptions
-  command:
-    cmd: oc apply -f  {{ role_path}}/files/kubevirt-hyperconverged.yaml
+  kubernetes.core.k8s:
+    template: "{{ role_path }}/files/kubevirt-hyperconverged.yaml"
+    #wait: True
+    #    wait_condition: 
+    #  type: 'Succeeded'
+    #  status: True
+    #  reason: 'InstallSucceeded'
 
-- name: Pause for 2 minutes to Allow Openshift Virtualizaion to get installed
-  pause:
-    minutes: 2
+    #- name: wait for Openshift Virtualizatoin Operator to install
+    #kubernetes.core.k8s_info:
+    #api_version: v1
+    #kind: Operator
+    #name: kubevirt-hyperconverged.openshift-cnv
+    ##    namespace: 
+    #register: result
+    ##  until: "'install strategy completed with no errors' in result"
+  #retries: 30
+
+  #- debug: var="result"
+  
+- name: wait for Openshift Virtualizatoin Operator to install
+  shell: |
+    oc get operators kubevirt-hyperconverged.openshift-cnv  -o yaml
+  register: result
+  until: "'install strategy completed with no errors' in result.stdout"
+  retries: 30
+
 
 - name: Deploy hyperconverged for Openshift Virtualizaion
-  command:
-    cmd: "oc apply -f {{ role_path}}/files/hyperconverged.yaml"
-  register: deployed_hyperconverged
-  retries: 5
-  delay: 15
-  until: deployed_hyperconverged.rc == 0
+  kubernetes.core.k8s:
+   template: "{{ role_path }}/files/hyperconverged.yaml"
+   wait: True
+   wait_condition:
+     reason: ReconcileCompleted
+     status: True
+     type: Available
+
+
+# TODO: Add a wait for the install
