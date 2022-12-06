@@ -67,8 +67,29 @@
 .  Working with openshift virtual machine templates
    - use `oc get templates -n openshift` to see a lis tof templates
    - pic any template that you like.  and look at the components.  For this example we will be using fedora-server-small `oc edit template -n openshift fedora-server-small` 
-   
 
+   - There are a limited amount of options available.  
+
+```
+- description: VM name
+  from: fedora-[a-z0-9]{16}
+  generate: expression
+  name: NAME
+- description: Name of the PVC to clone
+  name: SRC_PVC_NAME
+  value: fedora
+- description: Namespace of the source PVC
+  name: SRC_PVC_NAMESPACE
+  value: openshift-virtualization-os-images
+- description: Randomized password for the cloud-init user fedora
+  from: '[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}'
+  generate: expression
+  name: CLOUD_USER_PASSWORD
+```
+
+   - The base templates allow for very limited configuration of the system.  One method of create a virtual machine simply is to use `oc process fedora-server-small -p NAME=myserver | oc apply -f -`
+   - You will see a new small fedora virtual machine with the name `myserver`
+   - If you wish to have a more cutomizable environment, is to save off a processed template and modify it to suit our needs.  You can see an example output of this here (https://github.com/zer0glitch/ocpv-ansible-example/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
 
 name: "{{ vm_name }}" 
 name: "{{ boot_source }}"
