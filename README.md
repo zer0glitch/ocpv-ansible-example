@@ -23,6 +23,17 @@
 ### VM Installation and Configuration via OpenShift Console (Graphical Install)
 
 #### Templating
+.  By default we need to have a boot image avaiable 
+   - Option 1: Create a VM and import from the registry which will create a DataVolume
+   - Option 2: use a boot source in out template, which will need to be removed
+   - Option 3: Upload our own data volume
+
+.  Uploading a cloud image
+   - Download the desired cloud image, for the example we will use fedora
+     . `curl -O https://download.fedoraproject.org/pub/fedora/linux/releases/37/Cloud/x86_64/images/Fedora-Cloud-Base-37-1.7.x86_64.qcow2`
+   - upload the image to `openshift-virtualization-images` **Note: All boot images must be stored in this project**
+     . `virtctl --namespace openshift-virtualiation-images dv fedora37 --imagepath=Fedora-Cloud-Base-37-1.7.x86_64.qcow2`
+   
 .  Run playbook with default templates
    - Look at basetemplate
      - Edit the the project to match your user.  For the lab environment it is user{number}
