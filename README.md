@@ -58,7 +58,9 @@
        - The _server_name_: this is the name of the virtual machine
        - _template_name_: This is the name of the base template we are going to use. (We will examine the templates before running the playbook)
        - _default_password_:  This is the password for the cloud-init user.  Later we will show how to add ssh keys using a custom cloud-init)
-
+<details>
+ <summary> Example playbook </summary>
+ 
 ```
 ---
 - hosts: localhost
@@ -78,7 +80,7 @@
                 template_name: fedora-server-large
                 cloud_password: r3dh4t1!
 ```
-
+</details>
    - Now run the following playbook
      - the playbook will use the oc command installed on the system to process the templates and create the virtual machiens.  You can look at the task in the role to see the commands being run.
      - `ansible-playbook -vv setup-lab-server.yml`
