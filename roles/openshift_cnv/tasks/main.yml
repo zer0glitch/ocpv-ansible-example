@@ -1,0 +1,15 @@
+- name: create namespace and subscription
+  shell: |
+    oc apply -f {{ role_path }}/files/create-sub.yml
+
+- name: wait for nfd to install
+  shell: |
+    oc get operators kubevirt-hyperconverged.openshift-cnv  -o yaml
+  register: result
+  until: "'install strategy completed with no errors' in result.stdout"
+  retries: 30
+
+
+- name: deploy cnv
+  shell: |
+    oc apply -f {{ role_path }}/files/deploy-cnv.yml
