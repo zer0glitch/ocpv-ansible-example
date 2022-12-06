@@ -20,21 +20,37 @@
 
   * Install Operator and Hyper-converged
 
-### VM Installation and Configuration via OpenShift Console (Graphical Install)
+### VM Installation via OpenShift Console (Graphical Install)
 
-#### Templating
+#### Templates
 .  By default we need to have a boot image avaiable 
    - Option 1: Create a VM and import from the registry which will create a DataVolume
    - Option 2: use a boot source in out template, which will need to be removed
    - Option 3: Upload our own data volume
 
-.  Uploading a cloud image
+
+   - In the user interface navigate to Virtualization-->Templates and select fedora-server-small
+     - Scroll to "Scheduling and resources requirements"
+     - Look under flavor to see the CPU and Memory required
+     - Click the "Network Interfaces" Tab and see that this VM is using the Pod network, this means that the VM will not be accessible outside of the Openshift Network.  We will show later how we can use bridged networks
+     - Click on the "Disks" Tag.  by default we will have a single 30 GiB drive, and our cloud-init drive.  *The cloud init drive is stored a secret in the namespace*
+
+   - Now run the following playbook
+     - the playbook will use the oc command installed on the system to process the templates and create the virtual machiens.  You can look at the task in the role to see the commands being run.
+     - `ansible-playbook -vv setup-lab-server.yml`
+     - In the openshift console navigate to Virtualization-->Virtual Machines
+       - Select the project for your user
+       - The vitual machines will take a minute to come up, you can look at the teminal to see the init.
+
+### VM Installation via Ansible (Hacker Method)
+
+####  Uploading a cloud image
    - Download the desired cloud image, for the example we will use fedora
      . `curl -OL https://download.fedoraproject.org/pub/fedora/linux/releases/37/Cloud/x86_64/images/Fedora-Cloud-Base-37-1.7.x86_64.qcow2`
    - upload the image to `openshift-virtualization-os-images` **Note: All boot images must be stored in this project**
      . `virtctl --namespace openshift-virtualization-os-images image-upload dv fedora37 --image-path=Fedora-Cloud-Base-37-1.7.x86_64.qcow2 --size 20Gi`
-   
-.  Run playbook with default templates
+
+#### Run playbook with default templates
    - Look at basetemplate
      - Edit the the project to match your user.  For the lab environment it is user{number}
        *This will create the VMs in this namespace*
@@ -62,11 +78,6 @@
                 template_name: fedora-server-large
                 cloud_password: r3dh4t1!
 ```
-   - In the user interface navigate to Virtualization-->Templates and select fedora-server-small
-     - Scroll to "Scheduling and resources requirements"
-     - Look under flavor to see the CPU and Memory required
-     - Click the "Network Interfaces" Tab and see that this VM is using the Pod network, this means that the VM will not be accessible outside of the Openshift Network.  We will show later how we can use bridged networks
-     - Click on the "Disks" Tag.  by default we will have a single 30 GiB drive, and our cloud-init drive.  *The cloud init drive is stored a secret in the namespace*
 
    - Now run the following playbook
      - the playbook will use the oc command installed on the system to process the templates and create the virtual machiens.  You can look at the task in the role to see the commands being run.
@@ -74,8 +85,10 @@
      - In the openshift console navigate to Virtualization-->Virtual Machines
        - Select the project for your user
        - The vitual machines will take a minute to come up, you can look at the teminal to see the init.
-  
-.  Working with openshift virtual machine templates
+
+### VM Configuration via Ansible (Hacker method)
+
+#### Working with openshift virtual machine templates
    - use `oc get templates -n openshift` to see a lis tof templates
    - pic any template that you like.  and look at the components.  For this example we will be using fedora-server-small `oc edit template -n openshift fedora-server-small` 
 
@@ -114,14 +127,12 @@
      - _password|default('r3dh4t1!')_:
 
 
-.  How to customize
+####  How to customize
    Memory
    Drive
    CPU
    Network
 
-. Uploading custom image
+#### Uploading custom image
 
-. start/stop
-
-. using ansible to configure your vm
+#### start/stop
