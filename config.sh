@@ -1,10 +1,11 @@
 #!/bin/bash
 
-sudo dnf install ansible -y
-sudo dnf install python3-kubernetes -y
-sudo dnf install python3-pyyaml -y
+sudo pip3 install -U pip
+sudo pip3 install ansible
+sudo pip3 install kubernetes
+sudo pip3 install pyyaml 
 sudo dnf install python3-jsonpatch -y
-sudo dnf install python3-openshift -y
+sudo pip3 install openshift 
 sudo dnf install vim -y
 sudo ansible-galaxy collection install kubernetes.core
 

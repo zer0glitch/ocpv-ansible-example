@@ -30,11 +30,11 @@
 - name: Deploy hyperconverged for Openshift Virtualizaion
   kubernetes.core.k8s:
    template: "{{ role_path }}/files/hyperconverged.yaml"
-   wait: True
-   wait_condition:
-     reason: ReconcileCompleted
-     status: True
-     type: Available
+   #   wait: True
+   #wait_condition:
+   #  reason: ReconcileCompleted
+   #  status: True
+   #  type: Available
 
 
 # TODO: Add a wait for the install
