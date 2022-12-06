@@ -8,17 +8,30 @@
  - Explain things like what CNV (Container Native Virtualization) is.
  - how does it compare to more traditional virt platforms, including common pain points. (Probably best to pull this from sales docs. can provide more info if necessary)
  - Some benefits to OCP-V? (This can be removed if we want)
- 
-## Install:
 
-### CNV Installation via OpenShift Console (Graphical Install)
+## Environment initialization and configuration:
+(##TODO##) - Add information here regarding GUI vs Ansible. 
+
+### 1. Cluster provisioning
+In order to get started, you will need to gain access to the following RHPDS Course: OpenShift Virtualization Bare Metal AIO (##TODO## Add link later)
+
+### 2. Cluster access
+(##TODO##) - Need to add quick blurbs or screenshots of how to grab your login credentials like console https address, kubeadmin login, ssh access, etc.
+
+### 3. Lab configuration
+(##TODO##) - Need to add information here on how to setup the lab environment
+(Might need to add a section above? not sure.)
+
+#### CNV Installation via OpenShift Console (Graphical Install)
 
   * Install Operator
   * Create Hyper-converged
 
-### CNV Installation via Ansible (Hacker Install)
+#### CNV Installation via Ansible (Hacker Install)
 
   * Install Operator and Hyper-converged
+
+## Meat and potatoes of Virtual Machines!
 
 ### VM Installation via OpenShift Console (Graphical Install)
 
