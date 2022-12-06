@@ -30,9 +30,9 @@
 
 .  Uploading a cloud image
    - Download the desired cloud image, for the example we will use fedora
-     . `curl -O https://download.fedoraproject.org/pub/fedora/linux/releases/37/Cloud/x86_64/images/Fedora-Cloud-Base-37-1.7.x86_64.qcow2`
-   - upload the image to `openshift-virtualization-images` **Note: All boot images must be stored in this project**
-     . `virtctl --namespace openshift-virtualiation-images dv fedora37 --imagepath=Fedora-Cloud-Base-37-1.7.x86_64.qcow2`
+     . `curl -OL https://download.fedoraproject.org/pub/fedora/linux/releases/37/Cloud/x86_64/images/Fedora-Cloud-Base-37-1.7.x86_64.qcow2`
+   - upload the image to `openshift-virtualization-os-images` **Note: All boot images must be stored in this project**
+     . `virtctl --namespace openshift-virtualization-os-images image-upload dv fedora37 --image-path=Fedora-Cloud-Base-37-1.7.x86_64.qcow2 --size 20Gi`
    
 .  Run playbook with default templates
    - Look at basetemplate
