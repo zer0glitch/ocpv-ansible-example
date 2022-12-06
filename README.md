@@ -89,18 +89,18 @@
 
    - The base templates allow for very limited configuration of the system.  One method of create a virtual machine simply is to use `oc process fedora-server-small -p NAME=myserver | oc apply -f -`
    - You will see a new small fedora virtual machine with the name `myserver`
+   - You can start your own jinja2 template by running `oc process fedora-server-small -p NAME=vm_name`
    - If you wish to have a more cutomizable environment, is to save off a processed template and modify it to suit our needs.  You can see an example output of this here (https://github.com/zer0glitch/ocpv-ansible-example/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
-
-name: "{{ vm_name }}" 
-name: "{{ boot_source }}"
-storage: "{{ root_volume_size|default('30') }}Gi"
-cores: "{{ cores|default('1') }}"
-sockets: "{{ sockets|default('1') }}"
-threads: "{{ threads|default('1') }}"
-memory: "{{ memory|default('2') }}Gi"
-user: "{{ user|default('redhatuser') }}"
-password: "{{ password|default('r3dh4t1!') }}"
-
+   - The preconfigured template above has the following variables
+     - _vm_name_: The name of the virtual machine, this is used throughout the template to tag additional resources
+     - _boot_source_: The boot source will be the base server
+     - _root_volume_size|default('30')_:
+     - _cores|default('1')_:
+     - _sockets|default('1')_:
+     - _threads|default('1')_:
+     - _memory|default('2')_:
+     - _user|default('redhatuser')_:
+     - _password|default('r3dh4t1!')_:
 
 
 .  How to customize
