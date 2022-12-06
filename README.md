@@ -64,10 +64,10 @@
        - Select the project for your user
        - The vitual machines will take a minute to come up, you can look at the teminal to see the init.
   
+.  Working with openshift virtual machine templates
+   - use `oc get templates -n openshift` to see a lis tof templates
+   - pic any template that you like.  and look at the components.  For this example we will be using fedora-server-small `oc edit template -n openshift fedora-server-small` 
    
-
-
-.  Grab a template, and show pieces of it
 
 
 name: "{{ vm_name }}" 
