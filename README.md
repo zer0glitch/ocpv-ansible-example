@@ -22,6 +22,7 @@ If you at least have the above, then let's get going!
 
 ## Environment initialization and configuration:
 (##TODO##) - Add information here regarding GUI vs Ansible. 
+- _We should just put a Link to a separate document or documents.  Hands on with Openshift is a better env to use._
 
 ### 1. Cluster provisioning
 In order to get started, you will need to gain access to the following RHPDS Course: OpenShift Virtualization Bare Metal AIO (##TODO## Add link later)
