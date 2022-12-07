@@ -1,10 +1,21 @@
 # ocpv-ansible-example
 
-## Assumptions and Pre-Requisites:
-- Using RHPDS
-- Using Openshift Data Foundation on top of Local Storage Operator
+## Introduction:
+Welcome to the OpenShift Virtualization Lab!
+During this course you will learn how to:
+- Install OpenShift Virtualization + Hyper-Converged
+- Install Virtual Machines (VM's)
+- Learn how to change VM configuration
+- Learn how to use VM templates
+- Optionally: Learn how to automate it all!
 
-## What is OpenShift Virtualization?
+### Assumptions:
+In order to begin this course we have to assume you have met the below requirements:
+- You have access to a workstation with an internet connection (I sure hope you do if you're reading this!)
+- You have access to RHPDS.
+
+If you at least have the above, then let's get going!
+### What is OpenShift Virtualization?
  - Explain things like what CNV (Container Native Virtualization) is.
  - how does it compare to more traditional virt platforms, including common pain points. (Probably best to pull this from sales docs. can provide more info if necessary)
  - Some benefits to OCP-V? (This can be removed if we want)
@@ -19,8 +30,9 @@ In order to get started, you will need to gain access to the following RHPDS Cou
 (##TODO##) - Need to add quick blurbs or screenshots of how to grab your login credentials like console https address, kubeadmin login, ssh access, etc.
 
 ### 3. Lab configuration
-(##TODO##) - Need to add information here on how to setup the lab environment
+(##TODO##) - Need to add information here on how to setup the lab environment. Pulling down Git scripts, running them, verifying everything works etc.
 (Might need to add a section above? not sure.)
+(May also want to explain that this is going to be utilizing ODF on top of Local Storage Operator for a bare metal install? This might belong somewhere else)
 
 #### CNV Installation via OpenShift Console (Graphical Install)
 
@@ -29,13 +41,24 @@ In order to get started, you will need to gain access to the following RHPDS Cou
 
 #### CNV Installation via Ansible (Hacker Install)
 
-  * Install Operator and Hyper-converged
+  * Install Operator and Hyper-converged (##TODO) - Add steps using ansible provided by Matt R.
 
 ## Meat and potatoes of Virtual Machines!
 
-### VM Installation via OpenShift Console (Graphical Install)
+### 1. VM Installation
+In this section you will learn how to install VM's via the OCP Console, the `oc` command, and Ansible.
+Key things to understand when creating VM's in OpenShift:
+- Using templates allow you to pre-define many variables ahead of time, and tailor to each deployment as necessary
+   - Pros:
+   - Cons:
+- Using full VM configs will allow you to customize every VM exactly how you need it
+   - Pros:
+   - Cons:
 
-#### Templates
+Let's begin! (pick your poison)
+#### via OpenShift Console: (Graphical Install)
+
+##### Templates
 .  By default we need to have a boot image avaiable 
    - Option 1: Create a VM and import from the registry which will create a DataVolume
    - Option 2: use a boot source in out template, which will need to be removed
@@ -55,15 +78,15 @@ In order to get started, you will need to gain access to the following RHPDS Cou
        - Select the project for your user
        - The vitual machines will take a minute to come up, you can look at the teminal to see the init.
 
-### VM Installation via Ansible (Hacker Method)
+#### via Ansible: (Hacker Method)
 
-####  Uploading a cloud image
+#####  Uploading a cloud image
    - Download the desired cloud image, for the example we will use fedora
      . `curl -OL https://download.fedoraproject.org/pub/fedora/linux/releases/37/Cloud/x86_64/images/Fedora-Cloud-Base-37-1.7.x86_64.qcow2`
    - upload the image to `openshift-virtualization-os-images` **Note: All boot images must be stored in this project**
      . `virtctl --namespace openshift-virtualization-os-images image-upload dv fedora37 --image-path=Fedora-Cloud-Base-37-1.7.x86_64.qcow2 --size 20Gi`
 
-#### Run playbook with default templates
+##### Run playbook with default templates
    - Look at basetemplate
      - Edit the the project to match your user.  For the lab environment it is user{number}
        *This will create the VMs in this namespace*
@@ -101,9 +124,11 @@ In order to get started, you will need to gain access to the following RHPDS Cou
        - Select the project for your user
        - The vitual machines will take a minute to come up, you can look at the teminal to see the init.
 
-### VM Configuration via Ansible (Hacker method)
+### 2. VM Configuration
 
-#### Working with openshift virtual machine templates
+#### VM Configuration via Ansible (Hacker method)
+
+##### Templates:
    - use `oc get templates -n openshift` to see a lis tof templates
    - pic any template that you like.  and look at the components.  For this example we will be using fedora-server-small `oc edit template -n openshift fedora-server-small` 
 
@@ -142,12 +167,12 @@ In order to get started, you will need to gain access to the following RHPDS Cou
      - _password|default('r3dh4t1!')_:
 
 
-####  How to customize
+##  How to customize
    Memory
    Drive
    CPU
    Network
 
-#### Uploading custom image
+## Uploading custom image
 
-#### start/stop
+## start/stop
