@@ -1,0 +1,7 @@
+---
+- name: configure chrony
+  hosts: localhost
+  tasks:
+          - name: import chrony role
+            import_role: 
+              name: chrony
