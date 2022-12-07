@@ -5,8 +5,8 @@
       name: create_vm
     vars: 
       project: jwhetsel
-      vm_name: fedora-small-custom
-      boot_source: fedora
+      vm_name: centos8-custom
+      boot_source: centos8
       root_volume_size: 30
       cores: 1
       sockets: 1

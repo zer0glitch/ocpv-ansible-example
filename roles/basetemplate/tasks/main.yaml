@@ -4,7 +4,7 @@
   loop: "{{ vms }}"
 
 - name: Create virtual machiens
-  shell: "oc process  -n openshift  {{ item.template_name }} -p CLOUD_USER_PASSWORD={{ item.cloud_password }} -p NAME={{ item.name }} -p SRC_PVC_NAME=centos | oc apply -n {{ project }}  -f -"
+  shell: "oc process  -n openshift  {{ item.template_name }} -p CLOUD_USER_PASSWORD={{ item.cloud_password }} -p NAME={{ item.name }} -p SRC_PVC_NAME=centos8 | oc apply -n {{ project }}  -f -"
   loop: "{{ vms }}"
 
   #- name: Start the virtual machiens
