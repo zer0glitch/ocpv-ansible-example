@@ -1,0 +1,30 @@
+---
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: fedora
+spec:
+  source:
+    registry:
+      url: "docker://quay.io/kubevirt/fedora-cloud-container-disk-demo:latest"
+  pvc:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20Gi
+---
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: centos
+spec:
+  source:
+    registry:
+      url: "docker://quay.io/kubevirt/centos8-container-disk-images:latest"
+  pvc:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20Gi
