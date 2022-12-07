@@ -61,7 +61,7 @@ Let's begin! (pick your poison)
 ##### Templates
 .  By default we need to have a boot image avaiable 
    - Option 1: Create a VM and import from the registry which will create a DataVolume
-   - Option 2: use a boot source in out template, which will need to be removed
+   - Option 2: use a boot source in our template, which will need to be removed
    - Option 3: Upload our own data volume
    - Option 4: https://github.com/kubevirt/containerized-data-importer/blob/v1.53.0/doc/image-from-registry.md#import-registry-image-into-a-data-volume-using-node-docker-cache
 
@@ -118,6 +118,7 @@ Let's begin! (pick your poison)
                 cloud_password: r3dh4t1!
 ```
 </details>
+
    - Now run the following playbook
      - the playbook will use the oc command installed on the system to process the templates and create the virtual machiens.  You can look at the task in the role to see the commands being run.
      - `ansible-playbook -vv setup-lab-server.yml`
