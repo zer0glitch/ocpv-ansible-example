@@ -57,7 +57,9 @@ Key things to understand when creating VM's in OpenShift:
    - Cons:
 
 Let's begin! (pick your poison)
-#### via OpenShift Console: (Graphical Install)
+
+<details>
+<summary> <h4> via OpenShift Console </h4> </summary>
 
 ##### Templates
 .  By default we need to have a boot image avaiable 
@@ -79,8 +81,10 @@ Let's begin! (pick your poison)
      - In the openshift console navigate to Virtualization-->Virtual Machines
        - Select the project for your user
        - The vitual machines will take a minute to come up, you can look at the teminal to see the init.
+</details>
 
-#### via Ansible: (Hacker Method)
+<details>
+<summary> <h4> via Ansible: (Hacker Method) </h4> </summary>
 
 #####  Uploading a cloud image
    - Download the desired cloud image, for the example we will use fedora
@@ -126,6 +130,7 @@ Let's begin! (pick your poison)
      - In the openshift console navigate to Virtualization-->Virtual Machines
        - Select the project for your user
        - The vitual machines will take a minute to come up, you can look at the teminal to see the init.
+</details>
 
 ### 2. VM Configuration
 
