@@ -27,6 +27,7 @@
    - Option 1: Create a VM and import from the registry which will create a DataVolume
    - Option 2: use a boot source in out template, which will need to be removed
    - Option 3: Upload our own data volume
+   - Option 4: https://github.com/kubevirt/containerized-data-importer/blob/v1.53.0/doc/image-from-registry.md#import-registry-image-into-a-data-volume-using-node-docker-cache
 
 .  Uploading a cloud image
    - Download the desired cloud image, for the example we will use fedora
