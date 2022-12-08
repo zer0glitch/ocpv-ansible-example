@@ -2,6 +2,9 @@
 
 sudo pip3 install -U pip
 
+##
+## all of these installs need to be updated to actual RH repos
+##
 sudo dnf install -y https://vault.centos.org/centos/8/extras/x86_64/os/Packages/centos-release-ansible-29-1-2.el8.noarch.rpm
 
 sudo dnf install -y https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/p/python3-kubernetes-11.0.0-6.el8.noarch.rpm

@@ -5,14 +5,13 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   name: "{{ vm_name }}"
-spec:
   dataVolumeTemplates:
     - apiVersion: cdi.kubevirt.io/v1beta1
       kind: DataVolume
       metadata:
-        creationTimestamp: null
         name: "{{ vm_name }}-{{ random_string }}"
       spec:
+{% if boot_source_type|default(False) == 'pvc' %}
         pvc:
           accessModes:
             - ReadWriteOnce
@@ -25,6 +24,16 @@ spec:
           pvc:
             name: {{ boot_source }}
             namespace: openshift-virtualization-os-images
+{% else %}
+        sourceRef:
+          kind: DataSource
+          name: {{ boot_source }}
+          namespace: openshift-virtualization-os-images
+        storage:
+          resources:
+            requests:
+              storage: 30Gi
+{% endif %}
   running: true
   template:
     metadata:
