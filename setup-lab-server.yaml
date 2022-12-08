@@ -29,16 +29,24 @@
       group: "user{{ item }}"
     with_sequence: start=0 end={{ num_users }} stride=1
 
-  - name: set kubeconfig
-    set_fact:
-            kube_config: "{{ lookup('first_found', findme) }}"
-    vars:
-            findme: 
-              - /root/ocp-install/auth/kubeconfig
-              - /home/lab-user/install/auth/kubeconfig
+    #  - name: set kubeconfig
+    #become: True
+    #set_fact:
+    #        kube_config: "{{ lookup('first_found', findme) }}"
+    #vars:
+    #        findme: 
+    #          - /root/ocp-install/auth/kubeconfig
+    #          - /home/lab-user/install/auth/kubeconfig
 
   - name: copy kubeconfig to tmp
-    shell: "sudo cp  {{ kube_config }} /tmp/kubeconfig && sudo chmod 755 /tmp/kubeconfig"
+    shell: "sudo cp /home/lab-user/install/auth/kubeconfig  /tmp/kubeconfig && sudo chmod 755 /tmp/kubeconfig"
+    changed_when: True
+    failed_when: False
+
+  - name: copy kubeconfig to tmp
+    shell: "sudo cp /root/ocp-install/auth/kubeconfig  /tmp/kubeconfig && sudo chmod 755 /tmp/kubeconfig"
+    changed_when: True
+    failed_when: False
 
   - name: set default user
     set_fact:

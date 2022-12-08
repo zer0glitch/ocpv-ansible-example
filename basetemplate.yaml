@@ -7,7 +7,7 @@
       project: jwhetsel
       vms:
               - name: server-small
-                template_name: centos8-server-small
+                template_name: fedora-server-small
                 cloud_password: r3dh4t1!
                 #- name: server-medium
                 #template_name: centos-server-medium
