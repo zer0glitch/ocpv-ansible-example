@@ -9,9 +9,9 @@
               - name: server-small
                 template_name: fedora-server-small
                 cloud_password: r3dh4t1!
-                #- name: server-medium
-                #template_name: centos-server-medium
-                #cloud_password: r3dh4t1!
-                #- name: server-large
-                #template_name: centos-server-large
-                #cloud_password: r3dh4t1!
+              - name: server-medium
+                template_name: centos-server-medium
+                cloud_password: r3dh4t1!
+              - name: server-large
+                template_name: centos-server-large
+                cloud_password: r3dh4t1!
