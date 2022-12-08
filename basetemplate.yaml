@@ -4,7 +4,7 @@
   - import_role:
             name: basetemplate
     vars: 
-      project: jwhetsel
+      project: user0
       vms:
               - name: server-small
                 template_name: fedora-server-small
