@@ -21,7 +21,7 @@ items:
           resources:
             requests:
               storage: "{{ root_volume_size|default('30') }}Gi"
-    running: false
+    running: true
     template:
       metadata:
         annotations:

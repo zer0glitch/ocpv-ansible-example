@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  become: True
+  tasks:
+
+  - name: pip install ansible requirements
+    shell: sudo pip3 install "{{ item }}"
+    loop:
+    - pyyaml
+    - kubernetes
+    - openshift
+
+  - name: install ansible-galaxy collection kubernetes.core
+    become: False
+    command: ansible-galaxy collection install kubernetes.core
