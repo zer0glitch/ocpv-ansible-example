@@ -27,7 +27,8 @@
   #
 - name: start virtual machiens
   shell: "virtctl --namespace={{ project }} start {{ item }}"
-  loop: "{{ vm_list.stdout_lines }}"
+  loop: "{{ vms.name }}"
+  #  loop: "{{ vm_list.stdout_lines }}"
   #;  when: "'{{ item }}' in  vms "
 
 
