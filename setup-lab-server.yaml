@@ -12,14 +12,6 @@
       groups: wheel
     with_sequence: start=0 end={{ num_users }} stride=1
 
-# Install virtctl
-
-  - name: get virtctl
-    get_url: 
-      url: https://github.com/kubevirt/kubevirt/releases/download/v0.41.0/virtctl-v0.41.0-linux-amd64
-      dest: /usr/local/bin/virtctl
-      mode: 0755
-
   - name: create kube config directory
     file:
       mode: 0700
@@ -29,24 +21,10 @@
       group: "user{{ item }}"
     with_sequence: start=0 end={{ num_users }} stride=1
 
-    #  - name: set kubeconfig
-    #become: True
-    #set_fact:
-    #        kube_config: "{{ lookup('first_found', findme) }}"
-    #vars:
-    #        findme: 
-    #          - /root/ocp-install/auth/kubeconfig
-    #          - /home/lab-user/install/auth/kubeconfig
-
   - name: copy kubeconfig to tmp
     shell: "sudo cp /home/lab-user/install/auth/kubeconfig  /tmp/kubeconfig && sudo chmod 755 /tmp/kubeconfig"
-    changed_when: True
-    failed_when: False
-
-  - name: copy kubeconfig to tmp
-    shell: "sudo cp /root/ocp-install/auth/kubeconfig  /tmp/kubeconfig && sudo chmod 755 /tmp/kubeconfig"
-    changed_when: True
-    failed_when: False
+    #    changed_when: True
+    #failed_when: False
 
   - name: set default user
     set_fact:

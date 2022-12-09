@@ -7,36 +7,6 @@
   shell: "oc process  -n openshift  {{ item.template_name }} -p CLOUD_USER_PASSWORD={{ item.cloud_password }} -p NAME={{ item.name }}  | oc apply -n {{ project }}  -f -"
   loop: "{{ vms }}"
 
-  #- name: Start the virtual machiens
-  #debug:   msg="for i in $(oc get vms -n {{ project }} | grep Stopped | grep {{ item.name }} | awk '{print $1}'); do virtctl --namespace={{ project }} start $i; done"
-  #loop: "{{ vms }}"
-  #
-  #- name: Start the virtual machiens
-  #shell:   "for i in $(oc get vms -n {{ project }} | grep Stopped | grep {{ item.name }} | awk '{print $1}'); do virtctl --namespace={{ project }} start $i; done"
-  #loop: "{{ vms }}"
-
-- name: Start the virtual machiens
-  shell: "oc get vms -n {{ project }} | grep Stopped |  awk '{print $1}'"
-  register: vm_list
-
-- debug: var=vm_list.stdout_lines
-
-  # add wait for provisioned here
-  #
-  #
-  #
 - name: start virtual machiens
-  shell: "virtctl --namespace={{ project }} start {{ item }}"
-  loop: "{{ vms.name }}"
-  #  loop: "{{ vm_list.stdout_lines }}"
-  #;  when: "'{{ item }}' in  vms "
-
-
-  #  name
-  #template_name
-  #cloud_password
-  #NAME                    VM name                                                  expression          rhel9-[a-z0-9]{16}
-  #DATA_SOURCE_NAME        Name of the DataSource to clone                                              rhel9
-  #DATA_SOURCE_NAMESPACE   Namespace of the DataSource                                                  openshift-virtualization-os-images
-  #CLOUD_USER_PASSWORD     Randomized password for the cloud-init user cloud-user   expression          [a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}
-
+  shell: "virtctl --namespace={{ project }} start {{ item.name }}"
+  loop: "{{ vms }}"
