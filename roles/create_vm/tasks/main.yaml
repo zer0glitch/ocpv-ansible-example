@@ -1,7 +1,0 @@
----
-- debug: msg="{{ lookup('template', 'vm-template.yaml.j2') }}"
-- name: create virtual machine
-  kubernetes.core.k8s:
-    state: present
-    namespace: "{{ project }}"
-    template: 'vm-template.yaml.j2'

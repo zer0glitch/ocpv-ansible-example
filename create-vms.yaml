@@ -1,8 +1,23 @@
 ---
 - hosts: localhost
   tasks:
+
+  - name: create namespace for VMS
+    become: False
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      definition:
+        kind: Project
+        apiVersion: project.openshift.io/v1
+        metadata:
+          name: "user0"
+          labels:
+            kubernetes.io/metadata.name: "user0"
+
+
+
   - import_role:
-      name: create_vm
+      name: zer0glitch.ocpv.create_vm
     vars: 
       project: user0
       vm_name: fedora-custom
