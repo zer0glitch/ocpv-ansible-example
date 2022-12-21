@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+
+  - import_role:
+      name: zer0glitch.ocpv.power
+    vars: 
+      project: user0
+      vm_name: fedora-custom
+      running: true
