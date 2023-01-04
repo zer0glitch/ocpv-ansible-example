@@ -29,6 +29,12 @@
       threads: 1
       memory: 2
       password: r3dh4t1!
+      cloud_init: |
+            #cloud-config
+            user: "{{ user|default('redhatuser') }}"
+            password: "{{ password|default('r3dh4t1!') }}"
+            chpasswd: { expire: False }
+
 
 
                 #name: "{{ vm_name }}" 
