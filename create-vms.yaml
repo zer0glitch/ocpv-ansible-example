@@ -1,6 +1,9 @@
 ---
 - hosts: localhost
+  gather_facts: false
   tasks:
+          #  - set_fact:
+          #cloud_init_secret: 
 
   - name: create namespace for VMS
     become: False
@@ -10,16 +13,14 @@
         kind: Project
         apiVersion: project.openshift.io/v1
         metadata:
-          name: "user0"
+          name: "user1"
           labels:
-            kubernetes.io/metadata.name: "user0"
+            kubernetes.io/metadata.name: "user1"
 
-
-
-  - import_role:
+  - include_role:
       name: zer0glitch.ocpv.create_vm
     vars: 
-      project: user0
+      project: user1
       vm_name: fedora-custom
       boot_source: fedora
       boot_source_type: pvc
@@ -29,21 +30,53 @@
       threads: 1
       memory: 2
       password: r3dh4t1!
+      #network_interfaces:
+      #- name: eth1
+      #  bridge_name: vrb0
+      #  vlan_id: 222
+      #- name: eth2
+      #  bridge_name: vrb0
+      #  vlan_id: 222
+      data_volumes: 
+      - name: drive1
+        size: 30Gi
+      - name: drive2
+        size: 30Gi
       cloud_init: |
-            #cloud-config
-            user: "{{ user|default('redhatuser') }}"
-            password: "{{ password|default('r3dh4t1!') }}"
-            chpasswd: { expire: False }
+              #cloud-config
+              user: "jamie"
+              password: "r3dh4t1!"
+              chpasswd: { expire: False }
 
 
-
-                #name: "{{ vm_name }}" 
-                #name: "{{ boot_source }}"
-                #storage: "{{ root_volume_size|default('30') }}Gi"
-                #cores: "{{ cores|default('1') }}"
-                #sockets: "{{ sockets|default('1') }}"
-                #threads: "{{ threads|default('1') }}"
-                #memory: "{{ memory|default('2') }}Gi"
-                #user: "{{ user|default('redhatuser') }}"
-                #password: "{{ password|default('r3dh4t1!') }}"
+  - include_role:
+      name: zer0glitch.ocpv.create_vm
+    vars: 
+      project: user1
+      vm_name: fedora-custom2
+      boot_source: fedora
+      boot_source_type: pvc
+      root_volume_size: 30
+      cores: 1
+      sockets: 1
+      threads: 1
+      memory: 2
+      #      network_interfaces:
+      #- name: eth1
+      #  bridge_name: vrb0
+      #  vlan_id: 222
+      #- name: eth2
+      #  bridge_name: vrb0
+      #  vlan_id: 222
+      data_volumes: 
+      - name: drive1
+        size: 30Gi
+      - name: drive2
+        size: 30Gi
+      cloud_init_secret: |
+        #cloud-config
+        user: "jamie"
+        password: "r3dh4t1!"
+        chpasswd: { expire: False }
+        ssh_authorized_keys: {{ lookup('file', '~/.ssh/id_rsa.pub') }}
 
