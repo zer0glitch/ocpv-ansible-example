@@ -13,3 +13,7 @@
   - name: install ansible-galaxy collection kubernetes.core
     become: False
     command: ansible-galaxy collection install kubernetes.core
+
+  - name: install ansible-galaxy collection ocpv
+    become: False
+    command: ansible-galaxy collection install zer0glitch.ocpv
