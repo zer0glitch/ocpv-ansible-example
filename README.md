@@ -98,7 +98,7 @@ cd ocpv-ansible-example/
     * Run `ansible-playbook -vv create-vms.yaml` to create a virtual machine
     * Run `oc get vms --all-namespaces` or go to the UI and select *Virtual Machines* in the menu
 
-# Configure a bridged network
+# Configure a bridged network [Network configuratoin](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * `oc get nns`
   ```
    NAME       AGE
@@ -129,5 +129,40 @@ cd ocpv-ansible-example/
         ipv6:
           address:
   ...
-  ```
+      mac-address: DE:AD:BE:EF:02:50
+      mtu: 8942
+      name: ens5
+      state: up
+      type: ethernet
 
+  ```
+  * Create a bridge for ens5 with dhcp
+    ```
+    apiVersion: nmstate.io/v1
+    kind: NodeNetworkConfigurationPolicy
+    metadata:
+      name: ens5-br1-bridge
+    spec:
+      nodeSelector: 
+        node-role.kubernetes.io/worker: "" 
+      desiredState:
+        interfaces:
+          - name: br1
+            description: Linux bridge with eth1 as a port 
+            type: linux-bridge
+            state: up
+            ipv4:
+              dhcp: true
+              enabled: true
+            bridge:
+              options:
+                stp:
+                  enabled: false
+              port:
+                - name: eth1
+    ```
+
+wait `oc get vmi -o \
+  jsonpath="{.status.interfaces[?(@.interfaceName=='eth1')].ipAddress}"  \
+  -n user1 fedora-custom-network
+`
