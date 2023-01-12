@@ -43,7 +43,7 @@ cd ocpv-ansible-example/
 #### CNV Installation via Ansible (Autmmated Install)
 
   * Install Operator and Hyper-converged 
-  * (OCP Virtualization install role)[https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml]
+  * [OCP Virtualization install role](https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml)
 
 ```
 ---
