@@ -98,3 +98,15 @@ cd ocpv-ansible-example/
     * Run `ansible-playbook -vv create-vms.yaml` to create a virtual machine
     * Run `oc get vms --all-namespaces` or go to the UI and select *Virtual Machines* in the menu
 
+# Configure a bridged network
+  * `oc get nns`
+  ```
+   NAME       AGE
+   master-0   68m
+   master-1   68m
+   master-2   68m
+   worker-0   68m
+   worker-1   68m
+   worker-2   68m
+  ```
+
