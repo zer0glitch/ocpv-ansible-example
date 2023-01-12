@@ -6,12 +6,12 @@
   - name: install vim
     dnf:
      name: "{{ item }}"
-     state: installed
+     state: absent
     loop:
     - python3-kubernetes
     - python3-openshift
     - python3-jsonpatch
-    - vim
+      #- vim
 
   - name: get virtctl
     get_url:
