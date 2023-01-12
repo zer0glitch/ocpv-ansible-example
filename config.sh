@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo pip3 install -U pip
-sudo pip3 install ansible
+sudo pip3 install ansible==2.10
 sudo pip3 install kubernetes
 sudo pip3 install openshift
 sudo pip3 install jsonpath
