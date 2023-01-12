@@ -109,4 +109,25 @@ cd ocpv-ansible-example/
    worker-1   68m
    worker-2   68m
   ```
+  * `oc get nns -oyaml worker-0`
+  ```
+  apiVersion: nmstate.io/v1beta1
+  kind: NodeNetworkState
+  status:
+      interfaces:
+  ...
+      - ipv4:
+          address:
+          - ip: 192.168.3.105
+            prefix-length: 24
+          auto-dns: true
+          auto-gateway: true
+          auto-route-table-id: 0
+          auto-routes: true
+          dhcp: true
+          enabled: true
+        ipv6:
+          address:
+  ...
+  ```
 
