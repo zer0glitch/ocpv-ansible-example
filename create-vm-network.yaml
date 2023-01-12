@@ -18,7 +18,7 @@
       name: zer0glitch.ocpv.create_vm
     vars: 
       project: user1
-      vm_name: fedora-custom
+      vm_name: fedora-custom-network
       boot_source: fedora
       boot_source_type: pvc
       root_volume_size: 30
@@ -27,6 +27,9 @@
       threads: 1
       memory: 2
       password: r3dh4t1!
+      network_interfaces:
+      - name: eth1
+        bridge_name: br1
       data_volumes: 
       - name: drive1
         size: 10Gi
