@@ -20,29 +20,41 @@ If you at least have the above, then let's get going!
  - how does it compare to more traditional virt platforms, including common pain points. (Probably best to pull this from sales docs. can provide more info if necessary)
  - Some benefits to OCP-V? (This can be removed if we want)
 
-## Environment initialization and configuration:
-(##TODO##) - Add information here regarding GUI vs Ansible. 
-- _We should just put a Link to a separate document or documents.  Hands on with Openshift is a better env to use._
-
-### 1. Cluster provisioning
-In order to get started, you will need to gain access to the following RHPDS Course: OpenShift Virtualization Bare Metal AIO (##TODO## Add link later)
-
-### 2. Cluster access
-(##TODO##) - Need to add quick blurbs or screenshots of how to grab your login credentials like console https address, kubeadmin login, ssh access, etc.
-
-### 3. Lab configuration
-(##TODO##) - Need to add information here on how to setup the lab environment. Pulling down Git scripts, running them, verifying everything works etc.
-(Might need to add a section above? not sure.)
-(May also want to explain that this is going to be utilizing ODF on top of Local Storage Operator for a bare metal install? This might belong somewhere else)
+### 2. Lab configuration
+# Order your virtual environment rhpds
+* Go to https://demo.redhat.com
+* Search for "Virtualization"
+* Select Hands on with Openshift Virutalization
+* Order
+* ssh to the server following creds
+* Configure the demo enviornment 
+```
+sudo dnf install vim git -y
+git clone https://github.com/zer0glitch/ocpv-ansible-example.git
+cd ocpv-ansible-example/
+./config.sh
+```
 
 #### CNV Installation via OpenShift Console (Graphical Install)
 
   * Install Operator
   * Create Hyper-converged
 
-#### CNV Installation via Ansible (Hacker Install)
+#### CNV Installation via Ansible (Autmmated Install)
 
-  * Install Operator and Hyper-converged (##TODO) - Add steps using ansible provided by Matt R.
+  * Install Operator and Hyper-converged 
+
+```
+---
+- name: Install openshift virtualization
+  hosts: localhost
+  tasks:
+
+  - name: import deploy_cnv
+    import_role:
+            name: zer0glitch.ocpv.install
+```
+
 
 ## Meat and potatoes of Virtual Machines!
 
@@ -84,7 +96,7 @@ Let's begin! (pick your poison)
 </details>
 
 <details>
-<summary> <h4> via Ansible: (Hacker Method) </h4> </summary>
+<summary> <h4> via Ansible: (Autmmated Method) </h4> </summary>
 
 #####  Uploading a cloud image
    - Download the desired cloud image, for the example we will use fedora
@@ -134,7 +146,7 @@ Let's begin! (pick your poison)
 
 ### 2. VM Configuration
 
-#### VM Configuration via Ansible (Hacker method)
+#### VM Configuration via Ansible (Autmmated method)
 
 ##### Templates:
    - use `oc get templates -n openshift` to see a lis tof templates
