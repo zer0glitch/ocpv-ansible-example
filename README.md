@@ -56,6 +56,7 @@ cd ocpv-ansible-example/
             name: zer0glitch.ocpv.install
 ```
 
+  * `ansible-playbook -vv deploy-cnv.yaml`
 
 ## Meat and potatoes of Virtual Machines!
 
