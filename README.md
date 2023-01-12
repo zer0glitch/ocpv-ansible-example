@@ -95,4 +95,6 @@ cd ocpv-ansible-example/
         chpasswd: { expire: False }
         ssh_authorized_keys: {{ lookup('file', '~/.ssh/id_rsa.pub') }}
 
+    * Run `ansible-playbook -vv create-vms.yaml` to create a virtual machine
+    * Run `oc get vms --all-namespaces` or go to the UI and select *Virtual Machines* in the menu
 
