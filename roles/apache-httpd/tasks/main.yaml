@@ -1,0 +1,11 @@
+- name: install apache
+  become: True
+  dnf:
+          name: httpd
+          state: installed
+ 
+- name: start service
+  become: True
+  service:
+          name: httpd
+          state: started

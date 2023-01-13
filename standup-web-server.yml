@@ -1,0 +1,80 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - set_fact:
+          server_name: mywebserver
+          project_name: user1
+
+  - name: create namespace for VMS
+    become: False
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      definition:
+        kind: Project
+        apiVersion: project.openshift.io/v1
+        metadata:
+          name: "{{ project_name }}"
+          labels:
+            kubernetes.io/metadata.name: "{{ project_name }}"
+  - name: generate SSH key id_rsa
+    openssh_keypair:
+      path: "~/.ssh/id_rsa"
+      type: rsa
+      size: 4096
+      state: present
+      force: no
+
+  - include_role:
+      name: zer0glitch.ocpv.create_vm
+    vars: 
+      project: "{{ project_name }}"
+      vm_name: "{{ server_name }}"
+      boot_source: fedora
+      boot_source_type: pvc
+      root_volume_size: 30
+      cores: 1
+      sockets: 1
+      threads: 1
+      memory: 2
+      password: r3dh4t1!
+      wait: True
+      network_interfaces:
+      - name: eth1
+        bridge_name: br1
+        wait: True
+      data_volumes: 
+      - name: drive1
+        size: 10Gi
+      - name: drive2
+        size: 20Gi
+      cloud_init: |
+              #cloud-config
+              users:
+              - name: jamie
+                gecos: Ansible User
+                groups: users,admin,wheel
+                sudo: ALL=(ALL) NOPASSWD:ALL
+                shell: /bin/bash
+                lock_passwd: true
+                ssh_authorized_keys:
+                - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+
+  - name: get vm ip address
+    shell: "oc get vmi -o jsonpath=\"{.status.interfaces[?(@.interfaceName=='eth1')].ipAddress}\"  -n {{ project_name }} {{ server_name }}"
+    register: ip_address_result
+
+  - set_fact:
+          ip_address: "{{ ip_address_result.stdout }}"
+
+  - debug:
+          var: ip_address
+
+  - name: install httpd
+    include_role:
+            name: apache-httpd
+            apply: 
+              delegate_to: "{{ ip_address }}"
+              remote_user: jamie
+

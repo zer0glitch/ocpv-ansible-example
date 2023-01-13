@@ -30,6 +30,7 @@
       network_interfaces:
       - name: eth1
         bridge_name: br1
+        wait: True
       data_volumes: 
       - name: drive1
         size: 10Gi
@@ -40,3 +41,4 @@
               user: "jamie"
               password: "r3dh4t1!"
               chpasswd: { expire: False }
+              ssh_authorized_keys: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
