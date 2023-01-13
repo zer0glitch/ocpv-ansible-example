@@ -1,11 +1,15 @@
 - name: install apache
-  become: True
   dnf:
           name: httpd
           state: installed
  
 - name: start service
-  become: True
   service:
           name: httpd
           state: started
+
+- name: change index page
+  copy:
+          src: index.html
+          dest: /usr/share/httpd/noindex/index.html
+          mode: 0755

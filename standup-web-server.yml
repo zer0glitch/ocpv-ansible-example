@@ -56,7 +56,8 @@
                 groups: users,admin,wheel
                 sudo: ALL=(ALL) NOPASSWD:ALL
                 shell: /bin/bash
-                lock_passwd: true
+                lock_passwd: false
+                passwd: "{{ 'redhat' | password_hash('sha512') }}"
                 ssh_authorized_keys:
                 - "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
@@ -77,4 +78,5 @@
             apply: 
               delegate_to: "{{ ip_address }}"
               remote_user: jamie
+              become: True
 
