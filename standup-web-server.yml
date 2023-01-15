@@ -3,8 +3,19 @@
   gather_facts: false
   tasks:
   - set_fact:
-          server_name: mywebserver
+          server_name: testweb
           project_name: user1
+          host_services:
+          - name: ssh
+            port: "{{ range(51000, 59000) | random }}"
+            target_port: 22
+            host: ssh-route.user1.apps.rg595.dynamic.opentlc.com
+          - name: web
+            port: "{{ range(51000, 59000) | random }}"
+            target_port: 80
+            host: web-route.user1.apps.rg595.dynamic.opentlc.com
+
+  - debug: var=server_name
 
   - name: create namespace for VMS
     become: False
@@ -28,8 +39,8 @@
   - include_role:
       name: zer0glitch.ocpv.create_vm
     vars: 
-      project: "{{ project_name }}"
       vm_name: "{{ server_name }}"
+      project: "{{ project_name }}"
       boot_source: fedora
       boot_source_type: pvc
       root_volume_size: 30
@@ -79,4 +90,16 @@
               delegate_to: "{{ ip_address }}"
               remote_user: jamie
               become: True
+
+  - name: expose ports
+    include_role:
+      name: zer0glitch.ocpv.expose
+    vars: 
+      kubevirt_domain: "{{ server_name }}"
+      namespace: user1
+      name: "{{ item.name }}"
+      host: "{{ item.host }}"
+      port: "{{ item.port }}"
+      target_port: "{{ item.target_port }}"
+    loop: "{{ host_services }}"
 
