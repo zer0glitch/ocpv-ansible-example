@@ -12,8 +12,8 @@ In order to begin this course we have to assume you have met the below requireme
 - You have access to a workstation with an internet connection (I sure hope you do if you're reading this!)
 - You have access to RHPDS.
 
-### 1. Lab configuration
-# Order your virtual environment rhpds
+### 1. Lab configuration - This step can be skipped when utilizing  a different instance of OCP 
+#### Order your virtual environment rhpds
 * Go to https://demo.redhat.com
 * Search for "Virtualization"
 * Select Hands on with Openshift Virutalization
