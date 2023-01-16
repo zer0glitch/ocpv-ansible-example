@@ -1,8 +1,7 @@
 # ocpv-ansible-example
 
 ## Introduction:
-Welcome to the OpenShift Virtualization Lab!
-During this course you will learn how to:
+This is a project to provide examples for the [zer0glitch.ocpv](https://github.com/zer0glitch/ocpv) ansible collection.
 - Install OpenShift Virtualization + Hyper-Converged
 - Create nework policies
 - Create virtual machines
