@@ -49,7 +49,7 @@ cd ocpv-ansible-example/
   * Select "All Instances"
   * You will see the install completed successfully
 
-# Configure a bridged network [Network configuratoin](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
+#### Configure a bridged network [Network configuratoin](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * get the NodeNetworkState
   * `oc get nns`
   ```
