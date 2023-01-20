@@ -25,8 +25,12 @@ git clone https://github.com/zer0glitch/ocpv-ansible-example.git
 cd ocpv-ansible-example/
 ./config.sh
 ```
+* Gather kubeadmin password (As of writing this, RHPDS does not provide it for some reason) 
+```
+sudo cat /home/lab-user/install/auth/kubeadmin-password
+```
 
-#### CNV Installation via Ansible (Autmmated Install)
+#### CNV Installation via Ansible (Automated Install)
 
   * Install Operator and Hyper-converged 
   * [OCP Virtualization install role](https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml)
@@ -45,7 +49,7 @@ cd ocpv-ansible-example/
   * `ansible-playbook -vv deploy-cnv.yaml`
   * Navigate to Operators-->Installed Operators
   * Select "Openshift Virtualization"
-  * Select "All Instances"
+  * Select "All Instances" ##TODO## I have to select the openshift-cnv namespace to get mine to show up.
   * You will see the install completed successfully
 
 #### Configure a bridged network [Network configuratoin](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
