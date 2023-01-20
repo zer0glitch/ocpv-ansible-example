@@ -93,7 +93,7 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
       type: ethernet
 
   ```
-  * Create a bridge for ens5 with dhcp
+  * Create a bridge for ens5 with dhcp ##TODO## this should be more descriptive to include oc apply
    ```
    ---
    apiVersion: nmstate.io/v1
