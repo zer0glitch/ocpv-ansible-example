@@ -48,8 +48,9 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
 
   * `ansible-playbook -vv deploy-cnv.yaml`
   * Navigate to Operators-->Installed Operators
+  * Select `openshift-cnv`
   * Select "Openshift Virtualization"
-  * Select "All Instances" ##TODO## I have to select the openshift-cnv namespace to get mine to show up.
+  * Select "All Instances" 
   * You will see the install completed successfully
 
 #### Configure a bridged network [Network configuratoin](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
