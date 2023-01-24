@@ -3,17 +3,19 @@
   gather_facts: false
   tasks:
   - set_fact:
+          pds_uuid: m4vvb
+  - set_fact:
           server_name: testweb
           project_name: user1
           host_services:
           - name: ssh
             port: "{{ range(51000, 59000) | random }}"
             target_port: 22
-            host: ssh-route.user1.apps.rg595.dynamic.opentlc.com
+            host: "ssh-route.user1.apps.{{ pds_uuid }}.dynamic.opentlc.com"
           - name: web
             port: "{{ range(51000, 59000) | random }}"
             target_port: 80
-            host: web-route.user1.apps.rg595.dynamic.opentlc.com
+            host: "web-route.user1.apps.{{ pds_uuid }}.dynamic.opentlc.com"
 
   - debug: var=server_name
 
@@ -80,9 +82,6 @@
   - set_fact:
           ip_address: "{{ ip_address_result.stdout }}"
 
-  - debug:
-          var: ip_address
-
   - name: install httpd
     include_role:
             name: apache-httpd
@@ -102,4 +101,7 @@
       port: "{{ item.port }}"
       target_port: "{{ item.target_port }}"
     loop: "{{ host_services }}"
+
+  - debug:
+          msg: "The ip address of the server is {{ ip_address }}"
 
