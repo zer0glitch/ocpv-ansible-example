@@ -93,8 +93,9 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
       type: ethernet
 
   ```
-  * Create a bridge for ens5 with dhcp ##TODO## this should be more descriptive to include oc apply
+  * Create a bridge for ens5 with dhcp 
    ```
+   cat <<EOT >> nodenetworkconfigurationpolicy.yml
    ---
    apiVersion: nmstate.io/v1
    kind: NodeNetworkConfigurationPolicy
@@ -117,7 +118,9 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
                  enabled: false
              port:
                - name: ens5
+   EOT
    ```
+  * `oc apply -f nodenetworkconfigurationpolicy.yml`
 
 #### Creating a Virtual Machine with ansible (Autmmated Install)
   * Create a virtual machine
