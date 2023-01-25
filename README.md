@@ -57,7 +57,7 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
 
   * Run the following command
 ```
-ansible-playbook -vv deploy-cnv.yml
+ansible-playbook -vv examples/deploy-cnv.yml
 ```
   * Navigate to Operators-->Installed Operators
   * Select Project: "openshift-cnv"
@@ -74,7 +74,7 @@ ansible-playbook -vv deploy-cnv.yml
   * Create a basic virtual machine using the [create_vm](https://github.com/zer0glitch/ocpv/tree/main/roles/create_vm) role.  Using the [basic vm playbook](examples/basic-vm.yml)
 
 ```
-ansible-playbook -vv basic-vm.yml
+ansible-playbook -vv examples/basic-vm.yml
 ```
 
   * Go to the UI and select *Virtual Machines* in the menu
@@ -156,7 +156,7 @@ watch oc get vms --all-namespaces
 
 ### Creating a Virtual Machine with ansible and configure a web server (Autmmated Install)
    * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/standup-web-server.yml)
-   * Run the following playbook `ansible-playbook -vv standup-web-server.yml`
+   * Run the following playbook `ansible-playbook -vv examples/standup-web-server.yml`
    * The play will do the following:
      * Create a virtual machine
      * configure an additional interface
