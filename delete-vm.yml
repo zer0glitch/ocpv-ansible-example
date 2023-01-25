@@ -1,0 +1,13 @@
+---
+
+- name: Delete a  VM
+  hosts: localhost
+  tasks:
+
+  - name: delete vm
+    import_role:
+            name: zer0glitch.ocpv.delete_vm
+    vars:
+      name: fedora-custom
+      project: user0
+
