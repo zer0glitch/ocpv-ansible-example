@@ -71,11 +71,14 @@ ansible-playbook -vv deploy-cnv.yaml
   * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
 
     * Create a basic virtual machine using the [create_vm](https://github.com/zer0glitch/ocpv/tree/main/roles/create_vm) role.  Using the [basic vm playbook](examples/basic-vm.yml)
+
 ```
 ansible-playbook -vv basic-vm.yml
 ```
+
     * Go to the UI and select *Virtual Machines* in the menu
     *  or
+
 ```
 watch oc get vms --all-namespaces
 ```
