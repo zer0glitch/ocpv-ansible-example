@@ -129,6 +129,10 @@ oc get nns -oyaml worker-0
       type: ethernet
 
   ```
+  * Or use a shortcut
+  ```
+oc get nns -o jsonpath='{range .status.currentState.interfaces[*]}{"NAME: "}{.name}{"\t\tIPINFO: "}{.ipv4.address[*].ip}{"\t\t\tENABLED: "}{.ipv4.enabled}{"\n"}' worker-0
+  ```
   * Create a bridge for ens5 with dhcp 
    ```
    cat <<EOT >> nodenetworkconfigurationpolicy.yml
