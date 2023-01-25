@@ -53,6 +53,14 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
   * Select "All Instances" 
   * You will see the install completed successfully
 
+#### Creating a Virtual Machine with ansible (Autmmated Install)
+  * Create a virtual machine
+  * The role will use a virtual machine jinja2 [template](https://github.com/zer0glitch/ocpv/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
+  * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
+
+    * Run `ansible-playbook -vv create-vms.yaml` to create a virtual machine
+    * Run `oc get vms --all-namespaces` or go to the UI and select *Virtual Machines* in the menu
+
 #### Configure a bridged network [Network configuratoin](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * get the NodeNetworkState
   * `oc get nns`
@@ -122,14 +130,6 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
    EOT
    ```
   * `oc apply -f nodenetworkconfigurationpolicy.yml`
-
-#### Creating a Virtual Machine with ansible (Autmmated Install)
-  * Create a virtual machine
-  * The role will use a virtual machine jinja2 [template](https://github.com/zer0glitch/ocpv/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
-  * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
-
-    * Run `ansible-playbook -vv create-vms.yaml` to create a virtual machine
-    * Run `oc get vms --all-namespaces` or go to the UI and select *Virtual Machines* in the menu
 
 #### Creating a Virtual Machine with ansible and configure a web server (Autmmated Install)
    * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/standup-web-server.yml)
