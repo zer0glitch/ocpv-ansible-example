@@ -77,7 +77,7 @@ ansible-playbook -vv basic-vm.yml
 ```
 
   * Go to the UI and select *Virtual Machines* in the menu
-  *  or
+  * Or from the command line
 
 ```
 watch oc get vms --all-namespaces
