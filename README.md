@@ -13,7 +13,7 @@ In order to begin this course we have to assume you have met the below requireme
 or
 - You have your own enviornment with capable of running Openshift Virtualization
 
-### 1. Lab configuration - This step can be skipped when utilizing  a different instance of OCP 
+### Lab configuration - This step can be skipped when utilizing  a different instance of OCP 
 #### Order your virtual environment rhpds
 * Go to https://demo.redhat.com
 * Search for "Virtualization"
@@ -56,7 +56,7 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
 
   * Deploy openshift virtualization using the [zer0glitch.ocpv.install](https://github.com/zer0glitch/ocpv/tree/main/roles/install) role
 ```
-ansible-playbook -vv deploy-cnv.yaml
+ansible-playbook -vv deploy-cnv.yml
 ```
   * Navigate to Operators-->Installed Operators
   * Select Project: "openshift-cnv"
