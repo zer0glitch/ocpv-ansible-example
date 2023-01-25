@@ -61,7 +61,7 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
     * Run `ansible-playbook -vv basic-vm.yml` to create a virtual machine
     * Run `oc get vms --all-namespaces` or go to the UI and select *Virtual Machines* in the menu
 
-#### Configure a bridged network [Network configuration](https://access.redhat.com/documentation/en-us/OpenShift_container_platform/4.11/html/openshift_virtualization/node-networking)
+#### Configure a bridged network [Network configuration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * get the NodeNetworkState
   * `oc get nns`
   ```
