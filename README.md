@@ -38,6 +38,7 @@ cd ocpv-ansible-example/
 ```
 sudo cat /home/lab-user/install/auth/kubeadmin-password
 ```
+* Use kubeadmin and the discovered password to log into the openshift console
 
 ### CNV Installation via Ansible (Automated Install)
 
