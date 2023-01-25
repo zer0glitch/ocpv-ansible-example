@@ -41,8 +41,7 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
 
 #### CNV Installation via Ansible (Automated Install)
 
-  * Install Operator and Hyper-converged 
-  * [OCP Virtualization install role](https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml)
+  * Install Operator and Hyper-converged utilizing the [OCP Virtualization install role](https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml)
 
 ```
 ---
