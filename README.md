@@ -59,7 +59,8 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
 ansible-playbook -vv deploy-cnv.yaml
 ```
   * Navigate to Operators-->Installed Operators
-  * Select `openshift-cnv`
+  * Select Project: "openshift-cnv"
+  * Select "Show all Projects"
   * Select "Openshift Virtualization"
   * Select "All Instances" 
   * You will see the install completed successfully
@@ -69,8 +70,15 @@ ansible-playbook -vv deploy-cnv.yaml
   * The role will use a virtual machine jinja2 [template](https://github.com/zer0glitch/ocpv/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
   * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
 
-    * Run `ansible-playbook -vv basic-vm.yml` to create a virtual machine
-    * Run `oc get vms --all-namespaces` or go to the UI and select *Virtual Machines* in the menu
+    * Create a basic virtual machine using the [create_vm](https://github.com/zer0glitch/ocpv/tree/main/roles/create_vm) role.  Using the [basic vm playbook](examples/basic-vm.yml)
+```
+ansible-playbook -vv basic-vm.yml
+```
+    * Go to the UI and select *Virtual Machines* in the menu
+    *  or
+```
+watch oc get vms --all-namespaces
+```
 
 #### Configure a bridged network [Network configuration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * get the NodeNetworkState
