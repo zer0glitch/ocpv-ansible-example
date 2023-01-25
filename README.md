@@ -39,7 +39,7 @@ cd ocpv-ansible-example/
 sudo cat /home/lab-user/install/auth/kubeadmin-password
 ```
 
-#### CNV Installation via Ansible (Automated Install)
+### CNV Installation via Ansible (Automated Install)
 
   * Install Operator and Hyper-converged utilizing the [OCP Virtualization install role](https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml)
 
@@ -65,7 +65,7 @@ ansible-playbook -vv deploy-cnv.yaml
   * Select "All Instances" 
   * You will see the install completed successfully
 
-#### Creating a Virtual Machine with ansible (Automated Install)
+### Creating a Virtual Machine with ansible (Automated Install)
   * Create a virtual machine
   * The role will use a virtual machine jinja2 [template](https://github.com/zer0glitch/ocpv/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
   * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
@@ -83,7 +83,7 @@ ansible-playbook -vv basic-vm.yml
 watch oc get vms --all-namespaces
 ```
 
-#### Configure a bridged network [Network configuration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
+### Configure a bridged network [Network configuration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * get the NodeNetworkState
   * `oc get nns`
   ```
@@ -153,7 +153,7 @@ watch oc get vms --all-namespaces
    ```
   * `oc apply -f nodenetworkconfigurationpolicy.yml`
 
-#### Creating a Virtual Machine with ansible and configure a web server (Autmmated Install)
+### Creating a Virtual Machine with ansible and configure a web server (Autmmated Install)
    * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/standup-web-server.yml)
    * Run the following playbook `ansible-playbook -vv standup-web-server.yml`
    * The play will do the following:
