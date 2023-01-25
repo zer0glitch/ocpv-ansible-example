@@ -55,7 +55,10 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
             name: zer0glitch.ocpv.install
 ```
 
-  * `ansible-playbook -vv deploy-cnv.yaml`
+  * Deploy openshift virtualization using the [zer0glitch.ocpv.install](https://github.com/zer0glitch/ocpv/tree/main/roles/install) role
+```
+   ansible-playbook -vv deploy-cnv.yaml`
+```
   * Navigate to Operators-->Installed Operators
   * Select `openshift-cnv`
   * Select "Openshift Virtualization"
