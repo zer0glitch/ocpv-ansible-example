@@ -10,6 +10,8 @@ This is a project to provide examples for the [zer0glitch.ocpv](https://github.c
 In order to begin this course we have to assume you have met the below requirements:
 - You have access to a workstation with an internet connection (I sure hope you do if you're reading this!)
 - You have access to RHPDS.
+or
+- You have your own enviornment with capable of running Openshift Virtualization
 
 ### 1. Lab configuration - This step can be skipped when utilizing  a different instance of OCP 
 #### Order your virtual environment rhpds
@@ -17,12 +19,19 @@ In order to begin this course we have to assume you have met the below requireme
 * Search for "Virtualization"
 * Select Hands on with Openshift Virtualization
 * Order
-* ssh to the server following creds
+* ssh to the server with the credentials provided
 * Configure the demo environment 
 ```
+# install vim and git
 sudo dnf install vim git -y
+
+# clone the examples project
 git clone https://github.com/zer0glitch/ocpv-ansible-example.git
+
+# cd into the directory
 cd ocpv-ansible-example/
+
+# run the configure script to to install software, and a RHPDS enviornment.  This may change if you are using your own environment.
 ./config.sh
 ```
 * Gather kubeadmin password (As of writing this, RHPDS does not provide it for some reason) 
