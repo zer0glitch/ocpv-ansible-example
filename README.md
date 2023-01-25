@@ -86,7 +86,9 @@ watch oc get vms --all-namespaces
 
 ### Configure a bridged network [Network configuration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * get the NodeNetworkState
-  * `oc get nns`
+```
+oc get nns
+```
   ```
    NAME       AGE
    master-0   68m
@@ -98,7 +100,9 @@ watch oc get vms --all-namespaces
   ```
 
   * look at the first worker node to see what interfaces are available, and which one we would like to bridge
-  * `oc get nns -oyaml worker-0`
+ ```
+oc get nns -oyaml worker-0
+```
   ```
   apiVersion: nmstate.io/v1beta1
   kind: NodeNetworkState
@@ -152,7 +156,9 @@ watch oc get vms --all-namespaces
                - name: ens5
    EOT
    ```
-  * `oc apply -f nodenetworkconfigurationpolicy.yml`
+```
+oc apply -f nodenetworkconfigurationpolicy.yml
+```
 
 ### Creating a Virtual Machine with ansible and configure a web server (Autmmated Install)
    * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/standup-web-server.yml)

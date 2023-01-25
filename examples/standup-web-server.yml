@@ -50,7 +50,6 @@
       sockets: 1
       threads: 1
       memory: 2
-      password: r3dh4t1!
       wait: True
       network_interfaces:
       - name: eth1
