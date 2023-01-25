@@ -8,7 +8,7 @@ sudo pip3 install jsonpath
 sudo pip3 install -U kubernetes==12.0.0
 #sudo pip3 install -U pyyaml
 
-ansible-playbook  -vv setup-ocpv-ansible-enviornment.yaml  -b
-ansible-playbook  -vv setup-ocpv-user.yaml
-ansible-playbook  -vv setup-lab-server.yaml  -b
+ansible-playbook  -vv examples/setup-ocpv-ansible-enviornment.yaml  -b
+ansible-playbook  -vv examples/setup-ocpv-user.yaml
+ansible-playbook  -vv examples/setup-lab-server.yaml  -b
 #ansible-playbook  -vv deploy-cnv.yaml 
