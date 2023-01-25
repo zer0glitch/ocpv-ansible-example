@@ -3,7 +3,7 @@
 ## Introduction:
 This is a project to provide examples for the [zer0glitch.ocpv](https://github.com/zer0glitch/ocpv) ansible collection.
 - Install OpenShift Virtualization + Hyper-Converged
-- Create nework policies
+- Create network policies
 - Create virtual machines
 
 ### Assumptions:
@@ -15,10 +15,10 @@ In order to begin this course we have to assume you have met the below requireme
 #### Order your virtual environment rhpds
 * Go to https://demo.redhat.com
 * Search for "Virtualization"
-* Select Hands on with Openshift Virutalization
+* Select Hands on with Openshift Virtualization
 * Order
 * ssh to the server following creds
-* Configure the demo enviornment 
+* Configure the demo environment 
 ```
 sudo dnf install vim git -y
 git clone https://github.com/zer0glitch/ocpv-ansible-example.git
@@ -53,7 +53,7 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
   * Select "All Instances" 
   * You will see the install completed successfully
 
-#### Creating a Virtual Machine with ansible (Autmmated Install)
+#### Creating a Virtual Machine with ansible (Automated Install)
   * Create a virtual machine
   * The role will use a virtual machine jinja2 [template](https://github.com/zer0glitch/ocpv/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
   * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
@@ -61,7 +61,7 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
     * Run `ansible-playbook -vv basic-vm.yml` to create a virtual machine
     * Run `oc get vms --all-namespaces` or go to the UI and select *Virtual Machines* in the menu
 
-#### Configure a bridged network [Network configuratoin](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
+#### Configure a bridged network [Network configuration](https://access.redhat.com/documentation/en-us/OpenShift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * get the NodeNetworkState
   * `oc get nns`
   ```
