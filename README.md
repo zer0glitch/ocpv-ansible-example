@@ -2,9 +2,18 @@
 
 ## Introduction:
 This is a project to provide examples for the [zer0glitch.ocpv](https://github.com/zer0glitch/ocpv) ansible collection.
-- Install OpenShift Virtualization + Hyper-Converged
-- Create network policies
-- Create virtual machines
+- What is OCP-V
+- How to spin up a lab environment/prerequisites
+- How to configure your lab environment
+- Install OCP-V + Hyper-Converged
+- VM Networking in OCP
+  * Configure NNCP
+  - Routes/Services
+- Install Virtual Machines (VM's)
+- Learn how to change VM configuration
+- Learn how to use VM templates
+  - cloud-init
+
 
 ### Assumptions:
 In order to begin this course we have to assume you have met the below requirements:
