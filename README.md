@@ -1,5 +1,5 @@
 ## New phone, who dis?
-This is a project to provide instruction and examples to teach you OpenShift Virtualization via the [zer0glitch.ocpv](https://github.com/zer0glitch/ocpv) ansible collection.
+This is a project to provide instruction and examples to teach you OpenShift Virtualization (OCP-V) via the [zer0glitch.ocpv](https://github.com/zer0glitch/ocpv) ansible collection.
 During the course of your time with us, you will have learned the following:
 - What is OCP-V
 - How to spin up a lab environment/prerequisites
