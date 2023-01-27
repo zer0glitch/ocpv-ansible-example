@@ -226,8 +226,8 @@ cat <<EOT >> freebsd-vm.yml
       name: zer0glitch.ocpv.create_vm
     vars: 
       project: user1
-      vm_name: basic-fedora
-      boot_source: fedora
+      vm_name: freebsd
+      boot_source: freebsd13
       boot_source_type: pvc
       root_volume_size: 30
       cloud_init: |
