@@ -21,6 +21,8 @@ In order to begin this course we have to assume you have met the below requireme
 or
 - You have your own enviornment with capable of running Openshift Virtualization
 
+NOTE: Since this course is designed to run out of RHPDS, the assumption is your bastion host will be a linux host.
+
 ## Let's get started!
 
 ### So what is this "OCP-V" you speak of?
