@@ -193,7 +193,7 @@ There are a few considerations for a disconnected environment.
      * Use the opnshift-virtualization-os-images to store 
      * make sure you have `virtctl` installed
      * Put your QCOW on the local system
-     * `virtctl --namespace openshift-virtualization-os-images upload-image pvc fedora-pvc --size=10Gi --image-path=/images/fedora30.qcow2`  
+     * `virtctl --namespace openshift-virtualization-os-images image-upload pvc fedora-pvc --size=10Gi --image-path=/images/fedora30.qcow2`  
      * virtctl --namespace openshift-virtualization-os-images upload-image pvc `boot source parameter in the create_vm role` --size=10Gi --image-path=/images/fedora30.qcow2
 
    * Example create a FreeBSD based VM off a custom image
