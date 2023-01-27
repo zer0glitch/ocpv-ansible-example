@@ -54,8 +54,8 @@ Well, it depends. Do you even RHPDS?
 
 <details>
 <summary> <h4> But what if I don't have RHPDS? </h4> </summary>
-
-Ensure you have the following available to you:
+  
+WIP: Ensure you have the following available to you:
 - An OCP 4.10 and up cluster
 - A bastion host with the following:
       - Ansible
