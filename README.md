@@ -83,16 +83,21 @@ cd ocpv-ansible-example/
 ./config.sh
 ```
 * Gather kubeadmin password (As of writing this, RHPDS does not provide it for some reason) 
+NOTE: We recommend you save this password for later
 ```
 sudo cat /home/lab-user/install/auth/kubeadmin-password
 ```
 * Use kubeadmin and the discovered password to log into the openshift console (the web GUI thing)
 
 ## Sweet! Can we start doing the Virtualization?
+Of course! Let me explain some things first.
+1) Each step is laid out in the order it should be accomplished. If you're already familiar with how to accomplish a step, or you've already done it in your environment, skip to the next.
+2) Each step should also have a section for how to do things via the OpenShift Console, but the focus of this course is on automating these tasks.
 
-### CNV Installation via Ansible (Automated Install)
+<details>
+<summary> <h4> (Ansible) OCP-V Installation </h4> </summary>
 
-  * Install Operator and Hyper-converged utilizing the [OCP Virtualization install role](https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml)
+  * Install the Operator and Hyper-converged resource utilizing the [OCP Virtualization install role](https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml)
 
 ```
 ---
@@ -116,8 +121,12 @@ ansible-playbook -vv examples/deploy-cnv.yml
   * Select "All Instances" 
   * You will see the install completed successfully
 
-### Creating a Virtual Machine with ansible (Automated Install)
-  * Create a virtual machine
+</details>
+
+<details>
+<summary> <h4> (Ansible) Creating a VM </h4> </summary>
+  
+We're going to be using one of the roles from the zer0glitch OCP-V Galaxy repo.
   * The role will use a virtual machine jinja2 [template](https://github.com/zer0glitch/ocpv/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
   * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
 
@@ -127,13 +136,15 @@ ansible-playbook -vv examples/deploy-cnv.yml
 ansible-playbook -vv examples/basic-vm.yml
 ```
 
-  * Go to the UI and select *Virtual Machines* in the menu
-  * Or from the command line
+  * To watch things the pretty way, go to the OCP Console and select *Virtual Machines* in the menu
+  * Or to watch it from command line, run the below command (from your bastion host)
 
 ```
 watch oc get vms --all-namespaces
 ```
-
+  
+</details>
+  
 ### Configure a bridged network [Network configuration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * get the NodeNetworkState
 ```
