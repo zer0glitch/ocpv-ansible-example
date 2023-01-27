@@ -39,7 +39,7 @@ Well, it depends. Do you even RHPDS?
 <summary> <h4> Order your virtual environment via RHPDS </h4> </summary>
 
 * Go to the OCP-V [RHPDS Page:](https://demo.redhat.com/catalog?search=Virtualization&item=babylon-catalog-prod%2Fopenstack.hands-on-ocp-virtualization.prod)
-* Click Order
+* Let's order the thing!
   * Select "Training"
   * In the "Purpose" drop down, select "As part of course"
   * Read the "IMPORTANT PLEASE READ"
