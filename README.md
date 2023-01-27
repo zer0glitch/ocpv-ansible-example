@@ -103,19 +103,7 @@ Of course! Let me explain some things first.
 <summary> <h4> (Ansible) OCP-V Installation </h4> </summary>
 
   * Install the Operator and Hyper-converged resource utilizing the [OCP Virtualization install role](https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml)
-
-```
----
-- name: Install openshift virtualization
-  hosts: localhost
-  tasks:
-
-  - name: import deploy_cnv
-    import_role:
-            name: zer0glitch.ocpv.install
-```
-
-  * Run the following command
+  * To utilize the role, run the following playbook
 ```
 ansible-playbook -vv examples/deploy-cnv.yml
 ```
