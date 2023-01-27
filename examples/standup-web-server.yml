@@ -3,7 +3,7 @@
   gather_facts: false
   tasks:
   - set_fact:
-          pds_uuid: m4vvb
+          pds_uuid: tfd8c
   - set_fact:
           server_name: testweb
           project_name: user1

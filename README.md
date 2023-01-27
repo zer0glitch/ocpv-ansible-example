@@ -187,3 +187,12 @@ oc apply -f nodenetworkconfigurationpolicy.yml
      * run an ansible role that install apache httpd and copies over a default index
      * expose ssh and port 80 for web access
 
+### This is cool, but I am disconnected
+There are a few considerations for a disconnected environment.
+   * How do I load a custom boot image?
+     * Use the opnshift-virtualization-os-images to store 
+     * make sure you have `virtctl` installed
+     * Put your QCOW on the local system
+     * `virtctl --namespace openshift-virtualization-os-images upload-image pvc fedora-pvc --size=10Gi --image-path=/images/fedora30.qcow2`  
+     * virtctl --namespace openshift-virtualization-os-images upload-image pvc `boot source parameter in the create_vm role` --size=10Gi --image-path=/images/fedora30.qcow2
+
