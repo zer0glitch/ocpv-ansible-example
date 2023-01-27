@@ -11,11 +11,11 @@
           - name: ssh
             port: "{{ range(51000, 59000) | random }}"
             target_port: 22
-            host: "ssh-route.user1.apps.{{ pds_uuid }}.dynamic.opentlc.com"
+            #host: "ssh-route.user1.apps.{{ pds_uuid }}.dynamic.opentlc.com"
           - name: web
             port: "{{ range(51000, 59000) | random }}"
             target_port: 80
-            host: "web-route.user1.apps.{{ pds_uuid }}.dynamic.opentlc.com"
+            #host: "web-route.user1.apps.{{ pds_uuid }}.dynamic.opentlc.com"
 
   - debug: var=server_name
 
@@ -96,7 +96,7 @@
       kubevirt_domain: "{{ server_name }}"
       namespace: user1
       name: "{{ item.name }}"
-      host: "{{ item.host }}"
+      #host: "{{ item.host }}"
       port: "{{ item.port }}"
       target_port: "{{ item.target_port }}"
     loop: "{{ host_services }}"

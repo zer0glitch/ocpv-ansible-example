@@ -37,7 +37,7 @@ OCP-V adds new objects into your OpenShift Container Platform cluster via Kubern
 
 ### Wait. How do I start again?
 Well, it depends. Do you even RHPDS?
-<details>
+<details open>
 <summary> <h4> Order your virtual environment via RHPDS </h4> </summary>
 
 * Go to the OCP-V [RHPDS Page:](https://demo.redhat.com/catalog?search=Virtualization&item=babylon-catalog-prod%2Fopenstack.hands-on-ocp-virtualization.prod)
@@ -54,7 +54,7 @@ Well, it depends. Do you even RHPDS?
 
 </details>
 
-<details>
+<details open>
 <summary> <h4> But what if I don't have RHPDS? </h4> </summary>
   
 WIP: Ensure you have the following available to you:
@@ -99,7 +99,7 @@ Of course! Let me explain some things first.
 2) Each step is laid out in the order it should be accomplished. If you're already familiar with how to accomplish a step, or you've already done it in your environment, skip to the next.
 3) Each step should also have a section for how to do things via the OpenShift Console, but the focus of this course is on automating these tasks.
 
-<details>
+<details open>
 <summary> <h4> (Ansible) OCP-V Installation </h4> </summary>
 
   * Install the Operator and Hyper-converged resource utilizing the [OCP Virtualization install role](https://github.com/zer0glitch/ocpv/blob/main/roles/install/tasks/main.yml)
@@ -116,7 +116,7 @@ ansible-playbook -vv examples/deploy-cnv.yml
 
 </details>
 
-<details>
+<details open>
 <summary> <h4> Networking: Creating a bridged network </h4> </summary>
 
 Doc links:
@@ -204,7 +204,7 @@ oc apply -f nodenetworkconfigurationpolicy.yml
 ```
 </details>
 
-<details>
+<details open>
 <summary> <h4> (Ansible) Creating a VM </h4> </summary>
 
 ### Standard VM, and intro to creating VMs:
