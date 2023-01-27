@@ -140,7 +140,10 @@ watch oc get vms --all-namespaces
 ### Now let's make it more complicated with a web server!
   
    * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/examples/standup-web-server.yml)
-   * Run the following playbook `ansible-playbook -vv examples/standup-web-server.yml`
+   * Run the following playbook 
+```
+ansible-playbook -vv examples/standup-web-server.yml
+```
    * The play will do the following:
      * Create a virtual machine
      * configure an additional interface
