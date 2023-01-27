@@ -20,7 +20,7 @@
       project: user1
       vm_name: basic-fedora
       boot_source: fedora
-      boot_source_type: pvc
+      boot_source_type: dv
       root_volume_size: 30
       cloud_init: |
               #cloud-config

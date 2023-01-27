@@ -44,7 +44,7 @@
       vm_name: "{{ server_name }}"
       project: "{{ project_name }}"
       boot_source: fedora
-      boot_source_type: pvc
+      boot_source_type: dv
       root_volume_size: 30
       cores: 1
       sockets: 1
