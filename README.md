@@ -137,24 +137,6 @@ ansible-playbook -vv examples/basic-vm.yml
 watch oc get vms --all-namespaces
 ```
 
-### Now let's make it more complicated with a web server!
-  
-   * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/examples/standup-web-server.yml)
-   * Run the following playbook 
-```
-ansible-playbook -vv examples/standup-web-server.yml
-```
-   * The play will do the following:
-     * Create a virtual machine
-     * configure an additional interface
-     * configure additional drives
-     * wait for the eth1 interface to be available
-     * run an ansible role that install apache httpd and copies over a default index
-     * expose ssh and port 80 for web access
-  
-</details>
-  
-  
 ### What? I thought it was more complicated than that?
 Don't worry. We can fix that!
 Since networking is always everyone's favorite subject, let's go over some networking!
@@ -248,6 +230,24 @@ oc get nns -o jsonpath='{range .status.currentState.interfaces[*]}{"NAME: "}{.na
 oc apply -f nodenetworkconfigurationpolicy.yml
 ```
 </details>
+  
+### Now let's make it more complicated with a web server!
+  
+   * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/examples/standup-web-server.yml)
+   * Run the following playbook 
+```
+ansible-playbook -vv examples/standup-web-server.yml
+```
+   * The play will do the following:
+     * Create a virtual machine
+     * configure an additional interface
+     * configure additional drives
+     * wait for the eth1 interface to be available
+     * run an ansible role that install apache httpd and copies over a default index
+     * expose ssh and port 80 for web access
+  
+</details>
+  
   
 ### This is cool, but I am disconnected
 There are a few considerations for a disconnected environment.
