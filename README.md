@@ -235,7 +235,7 @@ cat <<EOT >> freebsd-vm.yml
               user: "jamie"
               password: "r3dh4t1!"
               chpasswd: { expire: False }
-       EOT
+EOT
      
 ansible-playbook -vv freebsd-vm.yml
 
