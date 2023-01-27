@@ -8,7 +8,7 @@ During the course of your time with us, you will have learned the following:
 - How VM Networking in OCP works including a brief intro to:
   - How to Configure an NNCP
   - How Routes/Services should work
-- How to Virtual Machines (VM's)
+- How to create Virtual Machines (VM's)
 - How to change VM configuration
 - How to use VM templates
   - cloud-init
