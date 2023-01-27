@@ -42,6 +42,7 @@ Well, it depends. Do you even RHPDS?
 * Let's order the thing!
   * Select "Training"
   * In the "Purpose" drop down, select "As part of course"
+  * Leave "Salesforce ID" empty
   * Read the "IMPORTANT PLEASE READ"
   * Check the checkbox
   * *Now* click "Order"
