@@ -38,12 +38,16 @@ Well, it depends. Do you even RHPDS?
 <details>
 <summary> <h4> Order your virtual environment via RHPDS </h4> </summary>
 
-* Go to https://demo.redhat.com
-* Search for "Virtualization"
-* Select Hands on with Openshift Virtualization
-* Order
+* Go to the OCP-V [RHPDS Page:](https://demo.redhat.com/catalog?search=Virtualization&item=babylon-catalog-prod%2Fopenstack.hands-on-ocp-virtualization.prod)
+* Click Order
+  * Select "Training"
+  * In the "Purpose" drop down, select "As part of course"
+  * Read the "IMPORTANT PLEASE READ"
+  * Check the checkbox
+  * *Now* click "Order"
+* Wait for your environment to spin up
 * ssh to the server with the credentials provided
-* Configure the demo environment
+* Continue to the next steps. We'll configure your environment shortly
 
 </details>
 
