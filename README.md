@@ -117,33 +117,6 @@ ansible-playbook -vv examples/deploy-cnv.yml
 </details>
 
 <details>
-<summary> <h4> (Ansible) Creating a VM </h4> </summary>
-
-### Standard VM, and intro to creating VMs:
-We're going to be using one of the roles from the zer0glitch OCP-V Galaxy repo.
-  * The role will use a virtual machine jinja2 [template](https://github.com/zer0glitch/ocpv/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
-  * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
-
-  * Create a basic virtual machine using the [create_vm](https://github.com/zer0glitch/ocpv/tree/main/roles/create_vm) role.  Using the [basic vm playbook](examples/basic-vm.yml)
-
-```
-ansible-playbook -vv examples/basic-vm.yml
-```
-
-  * To watch things the pretty way, go to the OCP Console and select *Virtual Machines* in the menu
-  * Or to watch it from command line, run the below command (from your bastion host)
-
-```
-watch oc get vms --all-namespaces
-```
-
-### What? I thought it was more complicated than that?
-Don't worry. We can fix that!
-Since networking is always everyone's favorite subject, let's go over some networking!
-
-NOTE: If this is *that* boring for you, skip to the next section where we go over disconnected!
-
-<details>
 <summary> <h4> Networking: Creating a bridged network </h4> </summary>
 
 Doc links:
@@ -230,7 +203,28 @@ oc get nns -o jsonpath='{range .status.currentState.interfaces[*]}{"NAME: "}{.na
 oc apply -f nodenetworkconfigurationpolicy.yml
 ```
 </details>
-  
+
+<details>
+<summary> <h4> (Ansible) Creating a VM </h4> </summary>
+
+### Standard VM, and intro to creating VMs:
+We're going to be using one of the roles from the zer0glitch OCP-V Galaxy repo.
+  * The role will use a virtual machine jinja2 [template](https://github.com/zer0glitch/ocpv/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
+  * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
+
+  * Create a basic virtual machine using the [create_vm](https://github.com/zer0glitch/ocpv/tree/main/roles/create_vm) role.  Using the [basic vm playbook](examples/basic-vm.yml)
+
+```
+ansible-playbook -vv examples/basic-vm.yml
+```
+
+  * To watch things the pretty way, go to the OCP Console and select *Virtual Machines* in the menu
+  * Or to watch it from command line, run the below command (from your bastion host)
+
+```
+watch oc get vms --all-namespaces
+```
+
 ### Now let's make it more complicated with a web server!
   
    * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/examples/standup-web-server.yml)
