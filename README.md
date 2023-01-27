@@ -198,14 +198,14 @@ There are a few considerations for a disconnected environment.
 
    * Example create a FreeBSD based VM off a custom image
 ```
-     # Download the cloud image
-     curl -O https://object-storage.public.mtl1.vexxhost.net/swift/v1/1dbafeefbd4f4c80864414a441e72dd2/bsd-cloud-image.org/images/freebsd/13.0/freebsd-13.0-zfs.qcow2
+# Download the cloud image
+curl -O https://object-storage.public.mtl1.vexxhost.net/swift/v1/1dbafeefbd4f4c80864414a441e72dd2/bsd-cloud-image.org/images/freebsd/13.0/freebsd-13.0-zfs.qcow2
 
-     # upload the boot image
-     virtctl --namespace openshift-virtualization-os-images upload-image pvc  freebsd13 --size=10Gi --image-path=freebsd-13.0-zfs.qcow2
+# upload the boot image
+virtctl --namespace openshift-virtualization-os-images upload-image pvc  freebsd13 --size=10Gi --image-path=freebsd-13.0-zfs.qcow2
 
-     # Create the playbook to create the VM
-       cat <<EOT >> freebsd-vm.yml
+# Create the playbook to create the VM
+cat <<EOT >> freebsd-vm.yml
 ---
 - hosts: localhost
   gather_facts: false
@@ -237,7 +237,7 @@ There are a few considerations for a disconnected environment.
               chpasswd: { expire: False }
        EOT
      
-     ansible-playbook -vv freebsd-vm.yml
+ansible-playbook -vv freebsd-vm.yml
 
 ```
      
