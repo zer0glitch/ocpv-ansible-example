@@ -197,7 +197,7 @@ There are a few considerations for a disconnected environment.
      * virtctl --namespace openshift-virtualization-os-images upload-image pvc `boot source parameter in the create_vm role` --size=10Gi --image-path=/images/fedora30.qcow2
 
    * Example create a FreeBSD based VM off a custom image
-     ```
+```
      # Download the cloud image
      curl -O https://object-storage.public.mtl1.vexxhost.net/swift/v1/1dbafeefbd4f4c80864414a441e72dd2/bsd-cloud-image.org/images/freebsd/13.0/freebsd-13.0-zfs.qcow2
 
@@ -239,6 +239,6 @@ There are a few considerations for a disconnected environment.
      
      ansible-playbook -vv freebsd-vm.yml
 
-     ```
+```
      
 
