@@ -64,8 +64,7 @@ Ensure you have the following available to you:
 I'm glad you asked! (took you long enough...)
 All we have to do to start, is to make sure you have access to your bastion host, and start typing away!
 
-Just in case you missed this when you started setting things up, you'll need SSH or console access to a bastion machine.
-For our RHPDS peeps, this would be provided as an SSH connection.
+NOTE: you'll need SSH or console access to a bastion machine. For our RHPDS peeps, this would be provided as an SSH connection.
 
 Once you're ready, see the below code block to run some commands to configure your environment.
  
@@ -91,8 +90,9 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
 
 ## Sweet! Can we start doing the Virtualization?
 Of course! Let me explain some things first.
-1) Each step is laid out in the order it should be accomplished. If you're already familiar with how to accomplish a step, or you've already done it in your environment, skip to the next.
-2) Each step should also have a section for how to do things via the OpenShift Console, but the focus of this course is on automating these tasks.
+1) The assumption here is that you've already started and configured your lab environment correctly, and have a CLI up at the root of the newly cloned git directory. (as lab-user, not root)
+2) Each step is laid out in the order it should be accomplished. If you're already familiar with how to accomplish a step, or you've already done it in your environment, skip to the next.
+3) Each step should also have a section for how to do things via the OpenShift Console, but the focus of this course is on automating these tasks.
 
 <details>
 <summary> <h4> (Ansible) OCP-V Installation </h4> </summary>
@@ -125,7 +125,8 @@ ansible-playbook -vv examples/deploy-cnv.yml
 
 <details>
 <summary> <h4> (Ansible) Creating a VM </h4> </summary>
-  
+
+### Standard VM, and intro to creating VMs:
 We're going to be using one of the roles from the zer0glitch OCP-V Galaxy repo.
   * The role will use a virtual machine jinja2 [template](https://github.com/zer0glitch/ocpv/blob/main/roles/create_vm/templates/vm-template.yaml.j2)
   * The template offers benefits over just a standard openshift VM template, by using Ansible variables, the template can be customized quickly.
@@ -142,10 +143,26 @@ ansible-playbook -vv examples/basic-vm.yml
 ```
 watch oc get vms --all-namespaces
 ```
+
+### Now let's make it more complicated with a web server!
+  
+   * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/standup-web-server.yml)
+   * Run the following playbook `ansible-playbook -vv examples/standup-web-server.yml`
+   * The play will do the following:
+     * Create a virtual machine
+     * configure an additional interface
+     * configure additional drives
+     * wait for the eth1 interface to be available
+     * run an ansible role that install apache httpd and copies over a default index
+     * expose ssh and port 80 for web access
   
 </details>
   
-### Configure a bridged network [Network configuration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
+  
+<details>
+<summary> <h4> (Ansible) Networking: Creating a bridged network </h4> </summary>
+  
+Source: [Network configuration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
   * get the NodeNetworkState
 ```
 oc get nns
@@ -224,18 +241,8 @@ oc get nns -o jsonpath='{range .status.currentState.interfaces[*]}{"NAME: "}{.na
 ```
 oc apply -f nodenetworkconfigurationpolicy.yml
 ```
-
-### Creating a Virtual Machine with ansible and configure a web server (Autmmated Install)
-   * Look at the [setup-web-server.yml playbook](https://github.com/zer0glitch/ocpv-ansible-example/blob/main/standup-web-server.yml)
-   * Run the following playbook `ansible-playbook -vv examples/standup-web-server.yml`
-   * The play will do the following:
-     * Create a virtual machine
-     * configure an additional interface
-     * configure additional drives
-     * wait for the eth1 interface to be available
-     * run an ansible role that install apache httpd and copies over a default index
-     * expose ssh and port 80 for web access
-
+</details>
+  
 ### This is cool, but I am disconnected
 There are a few considerations for a disconnected environment.
    * How do I load a custom boot image?
