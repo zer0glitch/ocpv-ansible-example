@@ -2,16 +2,17 @@
 
 ## New phone, who dis?
 This is a project to provide instruction and examples to teach you OpenShift Virtualization via the [zer0glitch.ocpv](https://github.com/zer0glitch/ocpv) ansible collection.
+During the course of your time with us, you will have learned the following:
 - What is OCP-V
 - How to spin up a lab environment/prerequisites
 - How to configure your lab environment
-- Install OCP-V + Hyper-Converged
-- VM Networking in OCP
-  - Configure NNCP
-  - Routes/Services
-- Install Virtual Machines (VM's)
-- Learn how to change VM configuration
-- Learn how to use VM templates
+- How to install OCP-V + Hyper-Converged
+- How VM Networking in OCP works including a brief intro to:
+  - How to Configure an NNCP
+  - How Routes/Services should work
+- How to Virtual Machines (VM's)
+- How to change VM configuration
+- How to use VM templates
   - cloud-init
 
 
@@ -24,15 +25,50 @@ or
 
 ## Let's get started!
 
+### So what is this "OCP-V" you speak of?
+OpenShift Virtualization is an add-on to OpenShift Container Platform that allows you to run and manage virtual machine workloads within a container native ecosystem.
+OCP-V adds new objects into your OpenShift Container Platform cluster via Kubernetes custom resources to enable virtualization tasks. These tasks include:
+- Creating and managing Linux and Windows virtual machines
+- Connecting to virtual machines through a variety of consoles and CLI tools
+- Importing and cloning existing virtual machines
+- Managing network interface controllers and storage disks attached to virtual machines
+- Live migrating VM's between nodes
+
+
 ### Wait. How do I start again?
-#### Dis is a replacement for "Lab Configuration" TODO: explain pre-reqs
-#### Order your virtual environment rhpds
+Well, it depends. Do you even RHPDS?
+<details>
+<summary> <h4> Order your virtual environment via RHPDS </h4> </summary>
+
 * Go to https://demo.redhat.com
 * Search for "Virtualization"
 * Select Hands on with Openshift Virtualization
 * Order
 * ssh to the server with the credentials provided
-* Configure the demo environment 
+* Configure the demo environment
+
+</details>
+
+<details>
+<summary> <h4> But what if I don't have RHPDS? </h4> </summary>
+
+Ensure you have the following available to you:
+- An OCP 4.10 and up cluster
+- A bastion host with the following:
+      - Ansible
+      - Python
+
+</details>
+
+### No really. What do I do?
+I'm glad you asked! (took you long enough...)
+All we have to do to start, is to make sure you have access to your bastion host, and start typing away!
+
+Just in case you missed this when you started setting things up, you'll need SSH or console access to a bastion machine.
+For our RHPDS peeps, this would be provided as an SSH connection.
+
+Once you're ready, see the below code block to run some commands to configure your environment.
+ 
 ```
 # install vim and git
 sudo dnf install vim git -y
@@ -50,7 +86,9 @@ cd ocpv-ansible-example/
 ```
 sudo cat /home/lab-user/install/auth/kubeadmin-password
 ```
-* Use kubeadmin and the discovered password to log into the openshift console
+* Use kubeadmin and the discovered password to log into the openshift console (the web GUI thing)
+
+## Sweet! Can we start doing the Virtualization?
 
 ### CNV Installation via Ansible (Automated Install)
 
