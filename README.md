@@ -157,10 +157,20 @@ watch oc get vms --all-namespaces
 </details>
   
   
+### What? I thought it was more complicated than that?
+Don't worry. We can fix that!
+Since networking is always everyone's favorite subject, let's go over some networking!
+
+NOTE: If this is *that* boring for you, skip to the next section where we go over disconnected!
+
 <details>
-<summary> <h4> (Ansible) Networking: Creating a bridged network </h4> </summary>
-  
-Source: [Network configuration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/openshift_virtualization/node-networking)
+<summary> <h4> Networking: Creating a bridged network </h4> </summary>
+
+Doc links:
+- [Network configuration](https://docs.openshift.com/container-platform/4.10/virt/node_network/virt-updating-node-network-config.html)
+- [Connecting a VM to a Bridged Network](https://docs.openshift.com/container-platform/4.10/virt/virtual_machines/vm_networking/virt-attaching-vm-multiple-networks.html)
+
+Steps:
   * get the NodeNetworkState
 ```
 oc get nns
@@ -175,7 +185,7 @@ oc get nns
    worker-2   68m
   ```
 
-  * look at the first worker node to see what interfaces are available, and which one we would like to bridge
+  * look at the first worker node (worker-0 in this case) to see what interfaces are available, and which one we would like to bridge
  ```
 oc get nns -oyaml worker-0
 ```
