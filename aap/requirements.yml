@@ -1,0 +1,6 @@
+---
+collections:
+  - kubernetes.core
+  - zer0glitch.ocpv
+#  - name: redhat.insights 
+#    source: https://hub.example.com/api/galaxy/content/rh-certified/ 
