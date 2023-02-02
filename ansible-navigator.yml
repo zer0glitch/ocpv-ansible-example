@@ -10,7 +10,7 @@ ansible-navigator:
   execution-environment:
      container-engine: podman
      enabled: True
-     image: localhost/zer0glitch.ocpv:1.0.0
+     image: quay.io/zeroglitch/ocpv-ee:1.0.0
      volume-mounts:
        - src: "/home/sq9zn-user/.kube"
          dest: "/home/runner/.kube"
