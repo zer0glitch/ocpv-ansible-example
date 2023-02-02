@@ -2,7 +2,8 @@
 version: 1
 
 build_arg_defaults:
-  EE_BASE_IMAGE: 'quay.io/ansible/ansible-runner:stable-2.10-devel'
+        EE_BASE_IMAGE: 'quay.io/ansible/ansible-runner:stable-2.10-devel'
+        #EE_BASE_IMAGE: 'registry.redhat.io/ansible-automation-platform-21/ee-supported-rhel8:1.0.1-114'
 
 ansible_config: 'ansible.cfg'
 
@@ -12,9 +13,11 @@ dependencies:
   system: bindep.txt
 
 additional_build_steps:
-  prepend: |
-    RUN whoami
-    RUN cat /etc/os-release
+  #prepend: |
+  #  RUN whoami
+  #  RUN cat /etc/os-release
   append:
-    - RUN echo This is a post-install command!
-    - RUN ls -la /etc
+    - RUN curl -O https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz
+    - RUN gunzip oc.tar
+    - RUN tar xfv oc.tar -C /usr/local/bin
+    - RUN curl -o /usr/local/bin/virtctl https://github.com/kubevirt/kubevirt/releases/download/v0.41.0/virtctl-v0.41.0-linux-amd64 && chmod 755 /usr/local/bin/*

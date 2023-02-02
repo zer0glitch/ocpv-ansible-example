@@ -1,0 +1,21 @@
+---
+ansible-navigator:
+  ansible:
+    inventories:
+    - ./inventory
+  app: run
+  color:
+    enable: False
+    osc4: False
+  execution-environment:
+     container-engine: podman
+     enabled: True
+     image: localhost/zer0glitch.ocpv:1.0.0
+     volume-mounts:
+       - src: "/home/sq9zn-user/.kube"
+         dest: "/home/runner/.kube"
+         label: "Z"
+  logging:
+    level: debug
+    file: /tmp/ocpv.log
+  mode: stdout
