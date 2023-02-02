@@ -3,15 +3,15 @@
   become: True
   tasks:
  
-          #- name: install vim
-          #dnf:
-          #name: "{{ item }}"
-          #state: absent
-          #loop:
-          #- python3-kubernetes
-          #- python3-openshift
-          #- python3-jsonpatch
-          ##- vim
+  - name: install vim
+    dnf:
+     name: "{{ item }}"
+     state: absent
+    loop:
+    - python3-kubernetes
+    - python3-openshift
+    - python3-jsonpatch
+      #- vim
 
   - name: get virtctl
     get_url:
@@ -20,8 +20,4 @@
       mode: 0755
 
 
-  - shell: hostname
-    register: t
-
-  - debug: var=t
 
