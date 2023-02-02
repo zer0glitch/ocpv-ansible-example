@@ -93,6 +93,8 @@ sudo cat /home/lab-user/install/auth/kubeadmin-password
 ```
 * Use kubeadmin and the discovered password to log into the openshift console (the web GUI thing)
 
+* Optional: [Use AAP 2](aap/README.md)
+
 ## Sweet! Can we start doing the Virtualization?
 Of course! Let me explain some things first.
 1) The assumption here is that you've already started and configured your lab environment correctly, and have a CLI up at the root of the newly cloned git directory. (as lab-user, not root)

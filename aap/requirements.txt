@@ -1,0 +1,3 @@
+openshift
+jsonpath
+kubernetes==12.0.0
